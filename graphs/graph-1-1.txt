@@ -81,22 +81,108 @@
             "custom_records": {}
         },
         {
-            "last_update": 0,
+            "last_update": 1709321370,
             "pub_key": "02e383e9d5e2a46d125ddf1a6387bdea05558b1d740f75883573a9d76cb865e252",
-            "alias": "",
-            "addresses": [],
+            "alias": "hellolightning",
+            "addresses": [
+                {
+                    "network": "tcp",
+                    "addr": "0.0.0.0:9732"
+                }
+            ],
             "color": "#000000",
-            "features": {},
+            "features": {
+                "0": {
+                    "name": "data-loss-protect",
+                    "is_required": true,
+                    "is_known": true
+                },
+                "5": {
+                    "name": "upfront-shutdown-script",
+                    "is_required": false,
+                    "is_known": true
+                },
+                "7": {
+                    "name": "gossip-queries",
+                    "is_required": false,
+                    "is_known": true
+                },
+                "8": {
+                    "name": "tlv-onion",
+                    "is_required": true,
+                    "is_known": true
+                },
+                "12": {
+                    "name": "static-remote-key",
+                    "is_required": true,
+                    "is_known": true
+                },
+                "14": {
+                    "name": "payment-addr",
+                    "is_required": true,
+                    "is_known": true
+                },
+                "17": {
+                    "name": "multi-path-payments",
+                    "is_required": false,
+                    "is_known": true
+                },
+                "19": {
+                    "name": "wumbo-channels",
+                    "is_required": false,
+                    "is_known": true
+                },
+                "23": {
+                    "name": "anchors-zero-fee-htlc-tx",
+                    "is_required": false,
+                    "is_known": true
+                },
+                "25": {
+                    "name": "unknown",
+                    "is_required": false,
+                    "is_known": false
+                },
+                "27": {
+                    "name": "shutdown-any-segwit",
+                    "is_required": false,
+                    "is_known": true
+                },
+                "39": {
+                    "name": "unknown",
+                    "is_required": false,
+                    "is_known": false
+                },
+                "45": {
+                    "name": "explicit-commitment-type",
+                    "is_required": false,
+                    "is_known": true
+                },
+                "47": {
+                    "name": "scid-alias",
+                    "is_required": false,
+                    "is_known": true
+                },
+                "51": {
+                    "name": "zero-conf",
+                    "is_required": false,
+                    "is_known": true
+                },
+                "55": {
+                    "name": "keysend",
+                    "is_required": false,
+                    "is_known": true
+                }
+            },
             "custom_records": {}
         },
         {
-            "last_update": 1709316757,
+            "last_update": 1709320376,
             "pub_key": "0387794d6227a05b812807180cc51340408b4246b25f624b47c44cc92edb9f746b",
             "alias": "alice",
             "addresses": [
                 {
                     "network": "tcp",
-                    "addr": "172.22.0.4:9735"
+                    "addr": "172.18.0.4:9735"
                 }
             ],
             "color": "#49daaa",
@@ -170,13 +256,13 @@
             "custom_records": {}
         },
         {
-            "last_update": 1709316751,
+            "last_update": 1709321536,
             "pub_key": "03878a8503028e1cd095c7fe35297e6bd978f1bf822610ab626dd5e0d792756be6",
             "alias": "bob",
             "addresses": [
                 {
                     "network": "tcp",
-                    "addr": "172.22.0.3:9735"
+                    "addr": "172.18.0.3:9735"
                 }
             ],
             "color": "#3399ff",
@@ -307,7 +393,7 @@
         {
             "channel_id": "653109906964480",
             "chan_point": "f36b92cfaf49096bae0e1434ffa50ad8582a3ee248fc14bfdbb6e3cb4ddf5d9f:0",
-            "last_update": 1709261841,
+            "last_update": 1709321689,
             "node1_pub": "02e383e9d5e2a46d125ddf1a6387bdea05558b1d740f75883573a9d76cb865e252",
             "node2_pub": "03878a8503028e1cd095c7fe35297e6bd978f1bf822610ab626dd5e0d792756be6",
             "capacity": "250000",
@@ -326,9 +412,9 @@
                 "min_htlc": "1000",
                 "fee_base_msat": "1000",
                 "fee_rate_milli_msat": "1",
-                "disabled": false,
+                "disabled": true,
                 "max_htlc_msat": "25000000",
-                "last_update": 1709261841,
+                "last_update": 1709321689,
                 "custom_records": {}
             },
             "custom_records": {}

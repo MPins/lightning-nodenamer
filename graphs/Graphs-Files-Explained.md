@@ -8,6 +8,7 @@ With a network of lightning nodes running on Lightning Polar with at list one ch
 As the LDK node is not available at Lightning Polar yet, I runned on my machine the ldk sample node available at (https://lightningdevkit.org/running-a-sample-ldk-node/) and connected it on graph1 lightning polar network opennig a channel to the LND node and generate the graph1-1.txt. 
 
 graph1.txt
+
     Eclair v0.8.0
     "alias": "alice",
     "pub_key": "0387794d6227a05b812807180cc51340408b4246b25f624b47c44cc92edb9f746b"
@@ -21,12 +22,14 @@ graph1.txt
     "pub_key": "02bef23553128cef07c1f46ff0caff369c0966d740dd81bf7f60d284cb36bb3a5d"
 
 graph1-1.txt
+
     just added the LDK node to the lightning polar network of graph1
     LDK v0.1.0
     "alias": "hellolightning"
     "pub_key": "02e383e9d5e2a46d125ddf1a6387bdea05558b1d740f75883573a9d76cb865e252"
 
 graph2.txt
+
     LND v0.17.2
     "alias": "bob"
     "pub_key": "03a4be97a9c8b451601ceb66659d08f3777b7ac6ad3f2ba93b2b75b2c3ee8e2bbf"

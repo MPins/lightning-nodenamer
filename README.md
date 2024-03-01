@@ -7,16 +7,16 @@ of an implementation). This information can also be used to make informed decisi
 protocol upgrades and deprecating features.
 
 Examples of default values:
-● Feature bits that are distinct to an implementation, or a version of an implementation.
-● Default routing policies such as fees and cltv delta.
-● Default generated node aliases or RGB colors.
+- Feature bits that are distinct to an implementation, or a version of an implementation.
+- Default routing policies such as fees and cltv delta.
+- Default generated node aliases or RGB colors.
 
 Input format:
-● A json description of the public graph. See the ones we use to start developing this project on graphs directory.
+- A json description of the public graph. See the ones we use to start developing this project on graphs directory.
 
 Output a CSV of node IDs, implementation names and version numbers:
-● Node ID (string): the hex-encoded pubkey of a node in the graph.
-● Implementation (string): LND, CLN, ECLR, LDK or UNKNOWN.
-● Version (string): the implementation version or UNKNOWN.
+- Node ID (string): the hex-encoded pubkey of a node in the graph.
+- Implementation (string): LND, CLN, ECLR, LDK or UNKNOWN.
+- Version (string): the implementation version or UNKNOWN.
 
 This project was proposed by Chaincode Hackathon, see the document here.

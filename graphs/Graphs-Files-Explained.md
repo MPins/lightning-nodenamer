@@ -10,7 +10,7 @@ Obs.2 - To get the feature flags on Core Lightning the command is:  lightning-cl
 
 As the LDK node is not available at Lightning Polar yet, I runned on my machine the ldk sample node available at (https://lightningdevkit.org/running-a-sample-ldk-node/) and connected it on graph1 lightning polar network opennig a channel to the LND node and generate the graph1-1.txt. 
 
-graph1.txt
+graph1.json
 
     Eclair v0.8.0
     "alias": "alice",
@@ -24,14 +24,14 @@ graph1.txt
     "alias": "carol"
     "pub_key": "02bef23553128cef07c1f46ff0caff369c0966d740dd81bf7f60d284cb36bb3a5d"
 
-graph1-1.txt
+graph1-1.json
 
     just added the LDK node to the lightning polar network of graph1
     LDK v0.1.0
     "alias": "hellolightning"
     "pub_key": "02e383e9d5e2a46d125ddf1a6387bdea05558b1d740f75883573a9d76cb865e252"
 
-graph2.txt
+graph2.json
 
     LND v0.17.2
     "alias": "bob"
@@ -44,6 +44,22 @@ graph2.txt
     Eclair v0.9.0
     "alias": "erin"
     "pub_key": "03fe86a02a6aa27a3a4a4c8636aa7195fa929dcb5c295914e60696eddd2a10f71d"
+
+graph3.json
+
+    LND v0.17.1
+    "alias": "bob"
+    "pub_key": "02f0ad7f85d5a0031dc388db35cbdacf18cb15b1da6457385ea039091e1a5de587"
+
+    Eclair v0.7.0
+    "alias": "carol"
+    "pub_key": "0324ae9b5ed02cce42ab6a79cbf7ce7014071c239544aa76fd2bf16c5920a1ec17"
+            
+    Core Lightning v0.12.0
+    "alias": "dave"
+    "pub_key": "02c8ba5caf916107411433e7fbea90734834b46518f8593884bfd70a2801f23148"
+
+
 
 
 

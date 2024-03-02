@@ -224,15 +224,6 @@
                 }
             },
             "custom_records": {}
-        },
-        {
-            "last_update": 0,
-            "pub_key": "03a665dd97e196bcda1455128abf911edd07ce14894bb75619ea6e331898b75fd0",
-            "alias": "",
-            "addresses": [],
-            "color": "#000000",
-            "features": {},
-            "custom_records": {}
         }
     ],
     "edges": [

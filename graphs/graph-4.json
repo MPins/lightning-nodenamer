@@ -1,0 +1,626 @@
+{
+    "nodes": [
+        {
+            "last_update": 1709386086,
+            "pub_key": "021a66c2edbd0be82d7c66e57316b773b6dd51c173c9cc10913134ea813a19735f",
+            "alias": "bob",
+            "addresses": [
+                {
+                    "network": "tcp",
+                    "addr": "172.22.0.4:9735"
+                }
+            ],
+            "color": "#3399ff",
+            "features": {
+                "0": {
+                    "name": "data-loss-protect",
+                    "is_required": true,
+                    "is_known": true
+                },
+                "5": {
+                    "name": "upfront-shutdown-script",
+                    "is_required": false,
+                    "is_known": true
+                },
+                "7": {
+                    "name": "gossip-queries",
+                    "is_required": false,
+                    "is_known": true
+                },
+                "9": {
+                    "name": "tlv-onion",
+                    "is_required": false,
+                    "is_known": true
+                },
+                "12": {
+                    "name": "static-remote-key",
+                    "is_required": true,
+                    "is_known": true
+                },
+                "14": {
+                    "name": "payment-addr",
+                    "is_required": true,
+                    "is_known": true
+                },
+                "17": {
+                    "name": "multi-path-payments",
+                    "is_required": false,
+                    "is_known": true
+                },
+                "23": {
+                    "name": "anchors-zero-fee-htlc-tx",
+                    "is_required": false,
+                    "is_known": true
+                },
+                "27": {
+                    "name": "shutdown-any-segwit",
+                    "is_required": false,
+                    "is_known": true
+                },
+                "31": {
+                    "name": "amp",
+                    "is_required": false,
+                    "is_known": true
+                },
+                "45": {
+                    "name": "explicit-commitment-type",
+                    "is_required": false,
+                    "is_known": true
+                },
+                "2023": {
+                    "name": "script-enforced-lease",
+                    "is_required": false,
+                    "is_known": true
+                }
+            },
+            "custom_records": {
+            }
+        },
+        {
+            "last_update": 1709386086,
+            "pub_key": "02ccd160a839941b4a34664cd886b7deb996387f7e1b7c1378f1da1f9a635899b2",
+            "alias": "erin",
+            "addresses": [
+            ],
+            "color": "#02ccd1",
+            "features": {
+                "1": {
+                    "name": "data-loss-protect",
+                    "is_required": false,
+                    "is_known": true
+                },
+                "5": {
+                    "name": "upfront-shutdown-script",
+                    "is_required": false,
+                    "is_known": true
+                },
+                "7": {
+                    "name": "gossip-queries",
+                    "is_required": false,
+                    "is_known": true
+                },
+                "8": {
+                    "name": "tlv-onion",
+                    "is_required": true,
+                    "is_known": true
+                },
+                "11": {
+                    "name": "unknown",
+                    "is_required": false,
+                    "is_known": false
+                },
+                "13": {
+                    "name": "static-remote-key",
+                    "is_required": false,
+                    "is_known": true
+                },
+                "14": {
+                    "name": "payment-addr",
+                    "is_required": true,
+                    "is_known": true
+                },
+                "17": {
+                    "name": "multi-path-payments",
+                    "is_required": false,
+                    "is_known": true
+                },
+                "27": {
+                    "name": "shutdown-any-segwit",
+                    "is_required": false,
+                    "is_known": true
+                },
+                "55": {
+                    "name": "keysend",
+                    "is_required": false,
+                    "is_known": true
+                }
+            },
+            "custom_records": {
+            }
+        },
+        {
+            "last_update": 1709386134,
+            "pub_key": "037d1659cef7711ae3b8891f5dc20137941c6a99412ed1587985d33be6e4f9299f",
+            "alias": "frank",
+            "addresses": [
+                {
+                    "network": "tcp",
+                    "addr": "172.22.0.8:9735"
+                }
+            ],
+            "color": "#49daaa",
+            "features": {
+                "1": {
+                    "name": "data-loss-protect",
+                    "is_required": false,
+                    "is_known": true
+                },
+                "7": {
+                    "name": "gossip-queries",
+                    "is_required": false,
+                    "is_known": true
+                },
+                "8": {
+                    "name": "tlv-onion",
+                    "is_required": true,
+                    "is_known": true
+                },
+                "11": {
+                    "name": "unknown",
+                    "is_required": false,
+                    "is_known": false
+                },
+                "13": {
+                    "name": "static-remote-key",
+                    "is_required": false,
+                    "is_known": true
+                },
+                "14": {
+                    "name": "payment-addr",
+                    "is_required": true,
+                    "is_known": true
+                },
+                "17": {
+                    "name": "multi-path-payments",
+                    "is_required": false,
+                    "is_known": true
+                },
+                "19": {
+                    "name": "wumbo-channels",
+                    "is_required": false,
+                    "is_known": true
+                },
+                "27": {
+                    "name": "shutdown-any-segwit",
+                    "is_required": false,
+                    "is_known": true
+                }
+            },
+            "custom_records": {
+            }
+        },
+        {
+            "last_update": 1709386195,
+            "pub_key": "03b6193d8a341a616c182ef044624a6b64fb77beee882356823aeb031cfd63c25b",
+            "alias": "alice",
+            "addresses": [
+                {
+                    "network": "tcp",
+                    "addr": "172.22.0.3:9735"
+                }
+            ],
+            "color": "#3399ff",
+            "features": {
+                "0": {
+                    "name": "data-loss-protect",
+                    "is_required": true,
+                    "is_known": true
+                },
+                "5": {
+                    "name": "upfront-shutdown-script",
+                    "is_required": false,
+                    "is_known": true
+                },
+                "7": {
+                    "name": "gossip-queries",
+                    "is_required": false,
+                    "is_known": true
+                },
+                "9": {
+                    "name": "tlv-onion",
+                    "is_required": false,
+                    "is_known": true
+                },
+                "12": {
+                    "name": "static-remote-key",
+                    "is_required": true,
+                    "is_known": true
+                },
+                "14": {
+                    "name": "payment-addr",
+                    "is_required": true,
+                    "is_known": true
+                },
+                "17": {
+                    "name": "multi-path-payments",
+                    "is_required": false,
+                    "is_known": true
+                },
+                "23": {
+                    "name": "anchors-zero-fee-htlc-tx",
+                    "is_required": false,
+                    "is_known": true
+                },
+                "27": {
+                    "name": "shutdown-any-segwit",
+                    "is_required": false,
+                    "is_known": true
+                },
+                "31": {
+                    "name": "amp",
+                    "is_required": false,
+                    "is_known": true
+                },
+                "45": {
+                    "name": "explicit-commitment-type",
+                    "is_required": false,
+                    "is_known": true
+                },
+                "2023": {
+                    "name": "script-enforced-lease",
+                    "is_required": false,
+                    "is_known": true
+                }
+            },
+            "custom_records": {
+            }
+        },
+        {
+            "last_update": 1709386258,
+            "pub_key": "03c5630a7778c655e9abfe038cc674c7e4046f5b1e2b397379b7447193b9c6b279",
+            "alias": "carol",
+            "addresses": [
+                {
+                    "network": "tcp",
+                    "addr": "172.22.0.5:9735"
+                }
+            ],
+            "color": "#3399ff",
+            "features": {
+                "0": {
+                    "name": "data-loss-protect",
+                    "is_required": true,
+                    "is_known": true
+                },
+                "5": {
+                    "name": "upfront-shutdown-script",
+                    "is_required": false,
+                    "is_known": true
+                },
+                "7": {
+                    "name": "gossip-queries",
+                    "is_required": false,
+                    "is_known": true
+                },
+                "9": {
+                    "name": "tlv-onion",
+                    "is_required": false,
+                    "is_known": true
+                },
+                "12": {
+                    "name": "static-remote-key",
+                    "is_required": true,
+                    "is_known": true
+                },
+                "14": {
+                    "name": "payment-addr",
+                    "is_required": true,
+                    "is_known": true
+                },
+                "17": {
+                    "name": "multi-path-payments",
+                    "is_required": false,
+                    "is_known": true
+                },
+                "23": {
+                    "name": "anchors-zero-fee-htlc-tx",
+                    "is_required": false,
+                    "is_known": true
+                },
+                "27": {
+                    "name": "shutdown-any-segwit",
+                    "is_required": false,
+                    "is_known": true
+                },
+                "31": {
+                    "name": "amp",
+                    "is_required": false,
+                    "is_known": true
+                },
+                "45": {
+                    "name": "explicit-commitment-type",
+                    "is_required": false,
+                    "is_known": true
+                },
+                "2023": {
+                    "name": "script-enforced-lease",
+                    "is_required": false,
+                    "is_known": true
+                }
+            },
+            "custom_records": {
+            }
+        },
+        {
+            "last_update": 1709386195,
+            "pub_key": "03f6a5acc209b8b9cd80f2b93db6f41812553063d09163a2c244bd104268fc838a",
+            "alias": "dave",
+            "addresses": [
+            ],
+            "color": "#03f6a5",
+            "features": {
+                "1": {
+                    "name": "data-loss-protect",
+                    "is_required": false,
+                    "is_known": true
+                },
+                "5": {
+                    "name": "upfront-shutdown-script",
+                    "is_required": false,
+                    "is_known": true
+                },
+                "7": {
+                    "name": "gossip-queries",
+                    "is_required": false,
+                    "is_known": true
+                },
+                "8": {
+                    "name": "tlv-onion",
+                    "is_required": true,
+                    "is_known": true
+                },
+                "11": {
+                    "name": "unknown",
+                    "is_required": false,
+                    "is_known": false
+                },
+                "13": {
+                    "name": "static-remote-key",
+                    "is_required": false,
+                    "is_known": true
+                },
+                "14": {
+                    "name": "payment-addr",
+                    "is_required": true,
+                    "is_known": true
+                },
+                "17": {
+                    "name": "multi-path-payments",
+                    "is_required": false,
+                    "is_known": true
+                },
+                "27": {
+                    "name": "shutdown-any-segwit",
+                    "is_required": false,
+                    "is_known": true
+                },
+                "45": {
+                    "name": "explicit-commitment-type",
+                    "is_required": false,
+                    "is_known": true
+                },
+                "47": {
+                    "name": "scid-alias",
+                    "is_required": false,
+                    "is_known": true
+                },
+                "51": {
+                    "name": "zero-conf",
+                    "is_required": false,
+                    "is_known": true
+                },
+                "55": {
+                    "name": "keysend",
+                    "is_required": false,
+                    "is_known": true
+                }
+            },
+            "custom_records": {
+            }
+        }
+    ],
+    "edges": [
+        {
+            "channel_id": "153931627954176",
+            "chan_point": "b2e01d6151b07ef87e22457faf96571f0925ec0478d35b5fb059edc5620837e2:0",
+            "last_update": 1709386042,
+            "node1_pub": "021a66c2edbd0be82d7c66e57316b773b6dd51c173c9cc10913134ea813a19735f",
+            "node2_pub": "03b6193d8a341a616c182ef044624a6b64fb77beee882356823aeb031cfd63c25b",
+            "capacity": "250000",
+            "node1_policy": {
+                "time_lock_delta": 80,
+                "min_htlc": "1000",
+                "fee_base_msat": "1000",
+                "fee_rate_milli_msat": "1",
+                "disabled": false,
+                "max_htlc_msat": "247500000",
+                "last_update": 1709386042,
+                "custom_records": {
+                }
+            },
+            "node2_policy": {
+                "time_lock_delta": 80,
+                "min_htlc": "1000",
+                "fee_base_msat": "1000",
+                "fee_rate_milli_msat": "1",
+                "disabled": false,
+                "max_htlc_msat": "247500000",
+                "last_update": 1709386041,
+                "custom_records": {
+                }
+            },
+            "custom_records": {
+            }
+        },
+        {
+            "channel_id": "162727720976384",
+            "chan_point": "f94132ca4cd426fb7cbfc8ecc19681611ce8a10b6c8a1eb05ca5817138e1947e:0",
+            "last_update": 1709386085,
+            "node1_pub": "021a66c2edbd0be82d7c66e57316b773b6dd51c173c9cc10913134ea813a19735f",
+            "node2_pub": "02ccd160a839941b4a34664cd886b7deb996387f7e1b7c1378f1da1f9a635899b2",
+            "capacity": "250000",
+            "node1_policy": {
+                "time_lock_delta": 80,
+                "min_htlc": "1000",
+                "fee_base_msat": "1000",
+                "fee_rate_milli_msat": "1",
+                "disabled": false,
+                "max_htlc_msat": "250000000",
+                "last_update": 1709386085,
+                "custom_records": {
+                }
+            },
+            "node2_policy": {
+                "time_lock_delta": 6,
+                "min_htlc": "1",
+                "fee_base_msat": "1",
+                "fee_rate_milli_msat": "10",
+                "disabled": false,
+                "max_htlc_msat": "247500000",
+                "last_update": 1709386081,
+                "custom_records": {
+                }
+            },
+            "custom_records": {
+            }
+        },
+        {
+            "channel_id": "170424302370816",
+            "chan_point": "6a90cec9dc61bd766d182b0fc989ff0664a45bd33bd4203b9d1debe77ac38a2e:0",
+            "last_update": 1709386157,
+            "node1_pub": "037d1659cef7711ae3b8891f5dc20137941c6a99412ed1587985d33be6e4f9299f",
+            "node2_pub": "03c5630a7778c655e9abfe038cc674c7e4046f5b1e2b397379b7447193b9c6b279",
+            "capacity": "250000",
+            "node1_policy": {
+                "time_lock_delta": 144,
+                "min_htlc": "1",
+                "fee_base_msat": "1000",
+                "fee_rate_milli_msat": "200",
+                "disabled": false,
+                "max_htlc_msat": "250000000",
+                "last_update": 1709386157,
+                "custom_records": {
+                }
+            },
+            "node2_policy": {
+                "time_lock_delta": 80,
+                "min_htlc": "1000",
+                "fee_base_msat": "1000",
+                "fee_rate_milli_msat": "1",
+                "disabled": false,
+                "max_htlc_msat": "250000000",
+                "last_update": 1709386134,
+                "custom_records": {
+                }
+            },
+            "custom_records": {
+            }
+        },
+        {
+            "channel_id": "179220395393024",
+            "chan_point": "fa6eb01bc78e9fa7a0ee9b900ef98c4081b48158dcac6629a6ac51561f602261:0",
+            "last_update": 1709386195,
+            "node1_pub": "03b6193d8a341a616c182ef044624a6b64fb77beee882356823aeb031cfd63c25b",
+            "node2_pub": "03f6a5acc209b8b9cd80f2b93db6f41812553063d09163a2c244bd104268fc838a",
+            "capacity": "250000",
+            "node1_policy": {
+                "time_lock_delta": 80,
+                "min_htlc": "1000",
+                "fee_base_msat": "1000",
+                "fee_rate_milli_msat": "1",
+                "disabled": false,
+                "max_htlc_msat": "250000000",
+                "last_update": 1709386195,
+                "custom_records": {
+                }
+            },
+            "node2_policy": {
+                "time_lock_delta": 6,
+                "min_htlc": "1",
+                "fee_base_msat": "1",
+                "fee_rate_milli_msat": "10",
+                "disabled": false,
+                "max_htlc_msat": "247500000",
+                "last_update": 1709386191,
+                "custom_records": {
+                }
+            },
+            "custom_records": {
+            }
+        },
+        {
+            "channel_id": "188016488415232",
+            "chan_point": "09f41c2b747311fbb8f2162bf79a91524ab2f7b5ee029ed626d62b4a1dbd7a31:0",
+            "last_update": 1709386257,
+            "node1_pub": "03c5630a7778c655e9abfe038cc674c7e4046f5b1e2b397379b7447193b9c6b279",
+            "node2_pub": "03f6a5acc209b8b9cd80f2b93db6f41812553063d09163a2c244bd104268fc838a",
+            "capacity": "250000",
+            "node1_policy": {
+                "time_lock_delta": 80,
+                "min_htlc": "1000",
+                "fee_base_msat": "1000",
+                "fee_rate_milli_msat": "1",
+                "disabled": false,
+                "max_htlc_msat": "250000000",
+                "last_update": 1709386257,
+                "custom_records": {
+                }
+            },
+            "node2_policy": {
+                "time_lock_delta": 6,
+                "min_htlc": "1",
+                "fee_base_msat": "1",
+                "fee_rate_milli_msat": "10",
+                "disabled": false,
+                "max_htlc_msat": "247500000",
+                "last_update": 1709386254,
+                "custom_records": {
+                }
+            },
+            "custom_records": {
+            }
+        },
+        {
+            "channel_id": "197912093065216",
+            "chan_point": "f577d5166f0dc74b85d4602a07517425dbd08a2d3e4288779dacabf779acdc46:0",
+            "last_update": 1709386373,
+            "node1_pub": "02ccd160a839941b4a34664cd886b7deb996387f7e1b7c1378f1da1f9a635899b2",
+            "node2_pub": "037d1659cef7711ae3b8891f5dc20137941c6a99412ed1587985d33be6e4f9299f",
+            "capacity": "250000",
+            "node1_policy": {
+                "time_lock_delta": 6,
+                "min_htlc": "1",
+                "fee_base_msat": "1",
+                "fee_rate_milli_msat": "10",
+                "disabled": false,
+                "max_htlc_msat": "247500000",
+                "last_update": 1709386324,
+                "custom_records": {
+                }
+            },
+            "node2_policy": {
+                "time_lock_delta": 144,
+                "min_htlc": "0",
+                "fee_base_msat": "1000",
+                "fee_rate_milli_msat": "200",
+                "disabled": false,
+                "max_htlc_msat": "250000000",
+                "last_update": 1709386373,
+                "custom_records": {
+                }
+            },
+            "custom_records": {
+            }
+        }
+    ]
+}

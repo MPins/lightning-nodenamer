@@ -5,6 +5,9 @@ I used the Lightning Polar (https://lightningpolar.com) to create the network of
 With a network of lightning nodes running on Lightning Polar with at list one channel created for each node I runned following the command line on LND node:
 - lncli describegraph
 
+Obs.1 - To get the feature flags on Eclair node the coomand is: eclair-cli nodes
+Obs.2 - To get the feature flags on Core Lightning the command is:  lightning-cli listnodes
+
 As the LDK node is not available at Lightning Polar yet, I runned on my machine the ldk sample node available at (https://lightningdevkit.org/running-a-sample-ldk-node/) and connected it on graph1 lightning polar network opennig a channel to the LND node and generate the graph1-1.txt. 
 
 graph1.txt
@@ -42,9 +45,6 @@ graph2.txt
     "alias": "erin"
     "pub_key": "03fe86a02a6aa27a3a4a4c8636aa7195fa929dcb5c295914e60696eddd2a10f71d"
 
-
-    
-     
 
 
 

@@ -2,91 +2,106 @@ import sys
 import ijson
 
 # State machine class
-class StateMachine:
+class state_machine:
     def __init__(self):
         self.state = 'initial'
 
     def event(self, event, prefix, data):
+
         if self.state == 'initial' and event == 'start_map':
-            print("Transitioning from 'initial' to 'map_started'")
+            print("Transitioning from 'initial' to 'map_started' event:", event, "prefix:", prefix, "data:",data)
             self.state = 'map_started'
+            return False
         elif self.state == 'map_started' and event == 'map_key':
-            print("Transitioning from 'map_started' to 'mapping'")
+            print("Transitioning from 'map_started' to 'mapping' event:", event, "prefix:", prefix, "data:",data)
             self.state = 'mapping'
+            return False
         elif self.state == 'map_started' and event == 'end_map':
-            print("Transitioning from 'map_started' to 'map_ended'")
+            print("Transitioning from 'map_started' to 'map_ended' event:", event, "prefix:", prefix, "data:",data)
             self.state = 'map_ended'
+            return False
         elif self.state == 'mapping' and event == 'start_map':
-            print("Transitioning from 'mapping' to 'map_started'")
+            print("Transitioning from 'mapping' to 'map_started' event:", event, "prefix:", prefix, "data:",data)
             self.state = 'map_started'
+            return False
         elif self.state == 'mapping' and event == 'start_array':
-            print("Transitioning from 'mapping' to 'array_started'")
-            self.state = 'array_Started'
+            print("Transitioning from 'mapping' to 'array_started' event:", event, "prefix:", prefix, "data:",data)
+            self.state = 'array_started'
+            return False
         elif self.state == 'mapping' and event == 'number':
-            print("Transitioning from 'mapping' to 'mapped'")
+            print("Transitioning from 'mapping' to 'mapped' event:", event, "prefix:", prefix, "data:",data)
             self.state = 'mapped'
+            # Add a new key-value pair to the data field
+            self.data[prefix] = data
+            return False
         elif self.state == 'mapping' and event == 'string':
-            print("Transitioning from 'mapping' to 'mapped'")
+            print("Transitioning from 'mapping' to 'mapped' event:", event, "prefix:", prefix, "data:",data)
             self.state = 'mapped'
+            # Add a new key-value pair to the data field
+            self.data[prefix] = data
+            return False
         elif self.state == 'mapping' and event == 'boolean':
-            print("Transitioning from 'mapping' to 'mapped'")
+            print("Transitioning from 'mapping' to 'mapped' event:", event, "prefix:", prefix, "data:",data)
             self.state = 'mapped'
-        elif self.state == 'array_Started' and event == 'start_map':
-            print("Transitioning from 'array_started' to 'map_started'")
-            self.state = 'map_started'
-        elif self.state == 'mapping' and event == 'end_array':
-            print("Transitioning from 'array_started' to 'array_ended'")
+            # Add a new key-value pair to the data field
+            self.data[prefix] = data
+            return False
+        elif self.state == 'array_started' and event == 'start_map':
+            print("Transitioning from 'array_started' to 'map_started' event:", event, "prefix:", prefix, "data:",data)
+            self.state = 'map_started'           
+            pieces = prefix.split('.')
+            # Check if the resulting list has exactly two pieces
+            if len(pieces) == 2: self.data = {}
+            return False 
+        elif self.state == 'array_started' and event == 'end_array':
+            print("Transitioning from 'array_started' to 'array_ended' event:", event, "prefix:", prefix, "data:",data)
             self.state = 'array_ended'
+            return False
         elif self.state == 'mapped' and event == 'map_key':
-            print("Transitioning from 'mapped' to 'mapping'")
+            print("Transitioning from 'mapped' to 'mapping' event:", event, "prefix:", prefix, "data:",data)
             self.state = 'mapping'
+            return False
         elif self.state == 'mapped' and event == 'end_map':
-            print("Transitioning from 'mapped' to 'map_ended'")
+            print("Transitioning from 'mapped' to 'map_ended' event:", event, "prefix:", prefix, "data:",data)
             self.state = 'map_ended'
+            return False
         elif self.state == 'map_ended' and event == 'end_array':
-            print("Transitioning from 'map_ended' to 'array_ended'")
+            print("Transitioning from 'map_ended' to 'array_ended' event:", event, "prefix:", prefix, "data:",data)
             self.state = 'array_ended'
+            return False
         elif self.state == 'map_ended' and event == 'start_map':
-            print("Transitioning from 'map_ended' to 'map_started'")
+            print("Transitioning from 'map_ended' to 'map_started' event:", event, "prefix:", prefix, "data:",data)
             self.state = 'map_started'
-        elif self.state == 'map_ended' and event == 'start_map':
-            print("Transitioning from 'map_ended' to 'map_started'")
-            self.state = 'map_started'
+            pieces = prefix.split('.')
+            # Check if the resulting list has exactly two pieces
+            if len(pieces) == 2: self.data = {}            
+            return False
         elif self.state == 'map_ended' and event == 'map_key':
-            print("Transitioning from 'map_ended' to 'mapping'")
+            print("Transitioning from 'map_ended' to 'mapping' event:", event, "prefix:", prefix, "data:",data)
             self.state = 'mapping'
+            return False
+        elif self.state == 'map_ended' and event == 'end_map':
+            print("Transitioning from 'map_ended' to 'map_ended' event:", event, "prefix:", prefix, "data:",data)
+            self.state = 'map_ended'
+            pieces = prefix.split('.')
+            # Check if the resulting list has exactly two pieces
+            if len(pieces) == 2: return True
         elif self.state == 'array_ended' and event == 'map_key':
-            print("Transitioning from 'array_ended' to 'mapping'")
+            print("Transitioning from 'array_ended' to 'mapping' event:", event, "prefix:", prefix, "data:",data)
             self.state = 'mapping'
+            return False
         elif self.state == 'array_ended' and event == 'end_map':
-            print("Transitioning from 'array_ended' to 'final'")
+            print("Transitioning from 'array_ended' to 'final' event:", event, "prefix:", prefix, "data:",data)
             self.state = 'final'
+            return False
         else:
             print("Invalid transition")
 
-# Create an instance of the state machine
-sm = StateMachine()
-
-# Perform transitions
-sm.transition('start')   # Transition from 'initial' to 'running'
-sm.transition('pause')  # Transition from 'running' to 'paused'
-sm.transition('resume') # Transition from 'paused' to 'running'
-sm.transition('stop')   # Transition from 'running' to 'stopped'
-sm.transition('start')  # Transition from 'stopped' to 'running'
-sm.transition('stop')   # Transition from 'running' to 'stopped'
-sm.transition('resume') # Invalid transition
-
-
-
-# Json file event process
-def event_process(prefix, event, value):
-    print("oi")
-
 # Process the json file generated by the lncli describegraph 
-def process_graph(json_file):
+def main(json_file):
 
-    nodes = {}
-    edges = {}
+    # Create an instance of the state machine
+    sm = state_machine()
 
     # Open the JSON file for reading
     with open(json_file, 'r') as file:
@@ -95,38 +110,9 @@ def process_graph(json_file):
     
         # Iterate over each JSON event
         for prefix, event, value in parser:
-        # Check if the event corresponds to the start of a new item (node or edge)
-            if event == 'start_map':
-                current_item = {}
+            # Perform transitions
+            sm.event(event, prefix, value)
 
-            # Check if the event corresponds to a key in the current item
-            elif event == 'map_key':
-                key = value
-
-            # Check if the event corresponds to a value in the current item
-            elif event == 'string':
-                # Assign the value to the corresponding key in the current item
-                current_item[key] = value
-
-            # Check if the event corresponds to a value in the current item
-            elif event == 'number':
-                # Assign the value to the corresponding key in the current item
-                current_item[key] = value
-
-            # Check if the event corresponds to the end of an item
-            elif event == 'end_map':
-                # Determine whether the item is a node or an edge based on the prefix
-                if prefix.startswith('nodes.item'):
-                    nodes.append(current_item)
-                elif prefix.startswith('edges.item'):
-                    edges.append(current_item)
-
-
-    return               # Return hops list and the number of routes > 1 if it is MPP
- 
-def main(json_file):
-    # Load Lightning Network route from CSV file
-    process_graph(json_file)
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:

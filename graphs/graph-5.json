@@ -6,7 +6,7 @@
             "alias": "bob",
             "addresses": [
                 {
-                    "network": "tcp",02361a03ccd076281df7eec7bae72e5c9db63d87ee8dcef810aa8f5f2c538e08b9
+                    "network": "tcp",
                     "addr": "172.24.0.2:9735"
                 }
             ],

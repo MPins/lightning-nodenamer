@@ -568,8 +568,9 @@ if __name__ == "__main__":
 
     # create another file ignoring the alias field due the erros it cause whe parsing it
     # because of unexpected characteres
-    pieces = json_file.split('.')
-    s_json_file = pieces[0]+"_s."+pieces[1]
+    file_name, file_extension = os.path.splitext(json_file)
+
+    s_json_file = file_name + "_s" + file_extension
     remove_alias(json_file, s_json_file)
         
     main(s_json_file)

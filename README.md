@@ -23,3 +23,30 @@ Output (nodenamer.csv) a CSV of node IDs, implementation names and version numbe
 Obs: The investigation done until the moment did not indicate that there is a reliable way to get the version of a lightning node implementation from feature bits, color or default policy
 
 This project was proposed by Chaincode Hackathon, see the document here.
+
+# Dependencies
+
+- IJSON Phyton Library
+
+ijson is a Python library that provides a way to work with JSON data in a streaming manner. It allows you to parse large JSON documents efficiently without loading the entire document into memory. Instead, it iterates over the JSON data, allowing you to process it piece by piece.
+
+Runn the following command to install the ijson library
+
+pip install ijson
+
+# How to run
+
+To run the Nodenamer is very simple, just clone the git repository on your machine.
+
+git clone https://github.com/MPins/lightning-nodenamer
+
+Go to the source directory and make sure you can run the nodenamer.py python program.
+
+Usage: python nodenamer.py <json_file>
+
+You can start using some json file examples on the graphs sub-directory. The nodenamer will create the nodenamer.csv as output.
+
+
+
+
+

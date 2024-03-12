@@ -12,11 +12,14 @@ Examples of default values:
 - Default generated node aliases or RGB colors.
 
 Input format:
-- A json description of the public graph. See the ones we use to start developing this project on graphs directory.
+- A json description of the public graph. See the ones we use to start developing this project on graphs directory. We get it running the following command on a LND node:
+    - lncli describegraph
 
-Output a CSV of node IDs, implementation names and version numbers:
+Output (nodenamer.csv) a CSV of node IDs, implementation names and version numbers:
 - Node ID (string): the hex-encoded pubkey of a node in the graph.
 - Implementation (string): LND, CLN, ECLR, LDK or UNKNOWN.
 - Version (string): the implementation version or UNKNOWN.
+
+Obs: The investigation done until the moment did not indicate that there is a reliable way to get the version of a lightning node implementation from feature bits, color or default policy
 
 This project was proposed by Chaincode Hackathon, see the document here.

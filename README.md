@@ -26,7 +26,7 @@ This project was proposed by Chaincode Hackathon, see the document here.
 
 # Dependencies
 
-- IJSON Phyton Library
+- IJSON python Library
 
 ijson is a Python library that provides a way to work with JSON data in a streaming manner. It allows you to parse large JSON documents efficiently without loading the entire document into memory. Instead, it iterates over the JSON data, allowing you to process it piece by piece.
 

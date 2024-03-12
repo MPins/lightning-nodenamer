@@ -50,14 +50,14 @@ You can start using some json file examples on the graphs sub-directory. The nod
 
 Besides the nodenamer.csv the program will show the following information on the screen
 
-Nodes: #of_nodes | Channels: #of_channels
-LND: #total of LND nodes
-CLN: #total of CLN nodes
-ECLR: #total of ECLR nodes
-LDK: #total of LDK nodes
-UNKNOWN NODES: #total of unknown nodes
-NO UPDATES NODES: #total of nodes which there is no updates on this json graph file
-NO FEATURE BIT NODES: #total of nodes which there is no feature bits on this json graph file
+- Nodes: #of_nodes | Channels: #of_channels
+- LND: #total of LND nodes
+- CLN: #total of CLN nodes
+- ECLR: #total of ECLR nodes
+- LDK: #total of LDK nodes
+- UNKNOWN NODES: #total of unknown nodes
+- NO UPDATES NODES: #total of nodes which there is no updates on this json graph file
+- NO FEATURE BIT NODES: #total of nodes which there is no feature bits on this json graph file
 
 
 

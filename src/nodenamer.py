@@ -453,7 +453,6 @@ def main(json_file):
                             node_color = sm.data['nodes.item.color']
                             last_update = sm.data['nodes.item.last_update']
                             # deleting data to compare the features fingerprint only
-                            # Remove the key-value pair with key "age"
                             for key, value in sm.data.copy().items():
                                 # Process the key-value pair
                                 pieces = key.split('.')
@@ -461,10 +460,11 @@ def main(json_file):
                                     del sm.data[key]
 
                             template_found = False
+                            # ***** FIRST LAYER ***** trying to identify the node using the feature bits
                             for i, template in enumerate(templates_list):
                                 if template == sm.data:
                                     template_found = True
-                                    # Extract distribution and version from the template index
+                                    # Extract implementation and version from the template index
                                     templates_index[i]['Qty'] += 1
                                     new_output = {"id": pubkey, "implementation": templates_index[i]['implementation'], "version": templates_index[i]['version']}
                                     output.append(new_output)
@@ -484,7 +484,7 @@ def main(json_file):
                                 templates_index[len(templates_index)-1]['Qty'] += 1
                                 new_output = {"id": pubkey, "color": node_color, "implementation": "NOUPDATE", "version": "NOUPDATE", 'LND': 0, 'LDK': 0, 'CLN': 0, 'ECLR': 0}
                                 output_no_updates_temp.append(new_output)
-                        # using the channel default policies to figure out the UNKOWNs         
+                        # ***** SECOND LAYER ***** trying to identify the node using the defaul channel policies (continue)         
                         elif sm.data['data_type'] == "edges":
                             channels_counter += 1
                             if sm.data['edges.item.last_update'] == 0: continue
@@ -514,8 +514,8 @@ def main(json_file):
             except ijson.JSONError as e:
                 print(f"Error parsing JSON: {e}")                
         print()
-
-        # Take the nodes from output_unknown if we could figure it out with the time lock delta policy
+        # ***** SECOND LAYER ***** trying to identify the node using the defaul channel policies
+        # Take the nodes data stored on output_unknown and use it to try identifying them
         output_temp.extend(output_no_features_temp)
         output_temp.extend(output_no_updates_temp)
         for node in output_temp:
@@ -529,6 +529,7 @@ def main(json_file):
                 new_output = {"id": node['id'], "implementation": max_key, "version": 'UNKNOWN'}
                 output.append(new_output)
             else:
+                # ***** THIRD LAYER ***** trying to identify the node using the defaul node color
                 imp_by_color = implementation_by_color(node['color'])
                 if imp_by_color == "UNKNOWN":
                     if node['implementation'] == "UNKNOWN": 

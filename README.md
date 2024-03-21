@@ -30,19 +30,25 @@ This project was proposed by Chaincode Hackathon, see the document here.
 
 ijson is a Python library that provides a way to work with JSON data in a streaming manner. It allows you to parse large JSON documents efficiently without loading the entire document into memory. Instead, it iterates over the JSON data, allowing you to process it piece by piece.
 
-Runn the following command to install the ijson library
+Run the following command to install the `ijson` library
 
+```sh
 pip install ijson
+```
 
 # How to run
 
 To run the Nodenamer is very simple, just clone the git repository on your machine.
 
+```sh
 git clone https://github.com/MPins/lightning-nodenamer
+```
 
-Go to the source directory and make sure you can run the nodenamer.py python program.
+Go to the source directory and make sure you can run the `nodenamer.py` python program.
 
-Usage: python nodenamer.py <json_file>
+```sh
+python nodenamer.py <json_file>
+```
 
 You can start using some json file examples on the graphs sub-directory. The nodenamer will create the nodenamer.csv as output.
 

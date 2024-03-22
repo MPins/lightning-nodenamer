@@ -63,7 +63,7 @@ Besides the nodenamer.csv the program will show the following information on the
 
 The programm approach the node implementation identification using 3 layers of information:
 
-- The first layer is considering only the features bit, in my opinion it is the strongest info we have, if it is possible to identify the implementation wiusing the feature bits I will not run the following two layers on the specific node.
+- The first layer is considering only the features bit, in my opinion it is the strongest info we have, if it is possible to identify the implementation using the feature bits the program will not run the following two layers on the specific node.
 
 - The second layer takes the unknown nodes from the first layer and try to figure them out looking at the default channel policies.
 

@@ -69,7 +69,14 @@ The programm approach the node implementation identification using 3 layers of i
 
 - Only the third layer of investigation is considering the default color, which in my opinion is the weakest information to be considered.
 
-This way I think we minimize the chance of getting false positives. 
+This way I think we minimize the chance of getting false positives.
+
+# The State Machine
+
+This is the State Machine tha was coded to read the Graph JSON file.
+
+![alt text](image.png)
+
 
 
 

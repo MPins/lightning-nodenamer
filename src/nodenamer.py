@@ -367,7 +367,7 @@ class state_machine:
             # print("Transitioning from 'array_started' to 'map_started' event:", event, "prefix:", prefix, "data:",data)
             self.state = 'map_started'           
             pieces = prefix.split('.')
-            # If the prefix field has 2 pieces (e.g. "nodes.item") we initate the data field
+            # If the prefix field has 2 pieces (e.g. "nodes.item") we initate the data field with nodes or edges
             if len(pieces) == 2: self.data = {"data_type":pieces[0]}
             return False 
         elif self.state == 'array_started' and event == 'end_array':

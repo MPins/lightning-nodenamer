@@ -34,6 +34,42 @@ def implementation_by_color(color):
     else:
         return 'UNKNOWN'
 
+# Function to check if feature exists in the list
+def feature_exists(feature, features_list):
+    for existing_feature in features_list:
+        if all(existing_feature[key] == feature[key] for key in feature):
+            existing_feature['qty'] += 1
+            return True
+    return False
+
+# Feature bits class
+class feature_bits:
+    def __init__(self):
+        self.count = []
+        features_list = [{'feature_bit': 1, 'feature_name': 'data-loss-protect', 'is_required': False, 'is_known': True}]
+
+    def counter(self, data):
+        # Accessing the features
+        for key, value in data.items():
+            # Splitting the key to extract information
+            parts = key.split('.')
+
+            if parts[4] == 'name':
+                current_feature = {'feature_bit': parts[3], 'feature_name': value}
+                
+            elif parts[4] == 'is_required':
+                current_feature['is_required'] = value
+
+            elif parts[4] == 'is_known':
+                current_feature['is_known'] = value
+                if feature_exists(current_feature, self.count) is False:
+                    current_feature['qty'] = 1
+                    self.count.append(current_feature)
+            else:
+                # Raise a exception
+                raise Exception("Error on feature bits counter.")
+
+
 # State machine class
 class state_machine:
     def __init__(self):
@@ -158,6 +194,9 @@ def main(json_file):
         # Create an instance of the state machine
         sm = state_machine()
 
+        # Create an instance of the feature bits class to create feature bits statistics
+        fb = feature_bits()
+
         # Open the JSON file for reading
         with open(json_file, 'r', encoding='utf-8', errors='ignore') as file:
             try:
@@ -181,6 +220,9 @@ def main(json_file):
                                 if pieces[2] != "features" and len(pieces) > 2:
                                     del sm.data[key]
 
+                            # count the feature bits
+                            fb.counter(sm.data)
+                            
                             template_found = False
                             # ***** FIRST LAYER ***** trying to identify the node using the feature bits
                             for i, template in enumerate(templates_list):
@@ -278,7 +320,16 @@ def main(json_file):
             print(f"{label}: {qty}")
         print(f"UNKNOWN NODES: {len(output_unknown)}")
         print(f"NO UPDATES NODES: {len(output_no_updates)}")
-        print(f"NO FEATURE BIT NODES: {len(output_no_features)}")        
+        print(f"NO FEATURE BIT NODES: {len(output_no_features)}")
+
+        # Order features_list by feature_bit
+        ordered_features = sorted(fb.count, key=lambda x: int(x['feature_bit']))
+
+        # Function to print each item of the features bit list
+        for feature in ordered_features:
+            for key, value in feature.items():
+                print(f"{key}: {value}", end=", ")
+            print()  # Move to the next line after printing all attributes of the item
 
     except Exception as e:
         print(f"An error occurred: {e}")

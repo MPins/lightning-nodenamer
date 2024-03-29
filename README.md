@@ -65,6 +65,8 @@ Besides the nodenamer.csv the program will show the following information on the
 - NO UPDATES NODES: #total of nodes which there is no updates on this json graph file
 - NO FEATURE BIT NODES: #total of nodes which there is no feature bits on this json graph file
 
+- Additionaly it will output the counting of each feature bits encountered on each node
+
 # Understanding the approach
 
 The programm approach the node implementation identification using 3 layers of information:

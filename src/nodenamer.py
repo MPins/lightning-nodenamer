@@ -4,7 +4,7 @@ import re
 import os
 
 # The definition of the finger print using the feature bits
-from feature_bits_templates import templates_index, templates_list
+from feature_bits_templates import bolt9_feature_flags, templates_index, templates_list
 
 # This function receives input JSON file and create the new output JSON file 
 # without the alias field.
@@ -55,7 +55,14 @@ class feature_bits:
             parts = key.split('.')
 
             if parts[4] == 'name':
-                current_feature = {'feature_bit': parts[3], 'feature_name': value}
+                for flag in bolt9_feature_flags:
+                    if flag.get(parts[3]):
+                        flag_name = flag[parts[3]]
+                        break
+                    else:
+                        flag_name = value
+
+                current_feature = {'feature_bit': parts[3], 'feature_name': flag_name}
                 
             elif parts[4] == 'is_required':
                 current_feature['is_required'] = value

@@ -1,3 +1,47 @@
+# BOLT #9: Assigned Feature Flags
+bolt9_feature_flags = [
+                        {'0':'option_data_loss_protect'},
+                        {'1':'option_data_loss_protect'},
+                        {'2':'initial_routing_sync'},
+                        {'3':'initial_routing_sync'},
+                        {'4':'option_upfront_shutdown_script'},
+                        {'5':'option_upfront_shutdown_script'},
+                        {'6':'gossip_queries'},
+                        {'7':'gossip_queries'},
+                        {'8':'var_onion_optin'},
+                        {'9':'var_onion_optin'},
+                        {'10':'gossip_queries_ex'},
+                        {'11':'gossip_queries_ex'},
+                        {'12':'option_static_remotekey'},
+                        {'13':'option_static_remotekey'},
+                        {'14':'payment_secret'},
+                        {'15':'payment_secret'},
+                        {'16':'basic_mpp'},
+                        {'17':'basic_mpp'},
+                        {'18':'option_support_large_channel'},
+                        {'19':'option_support_large_channel'},
+                        {'20':'option_anchor_outputs'},
+                        {'21':'option_anchor_outputs'},
+                        {'22':'option_anchors_zero_fee_htlc_tx'},
+                        {'23':'option_anchors_zero_fee_htlc_tx'},
+                        {'24':'option_route_blinding'},
+                        {'25':'option_route_blinding'},
+                        {'26':'option_shutdown_anysegwit'},
+                        {'27':'option_shutdown_anysegwit'},
+                        {'28':'option_dual_fund'},
+                        {'29':'option_dual_fund'},
+                        {'38':'option_onion_messages'},
+                        {'39':'option_onion_messages'},
+                        {'44':'option_channel_type'},
+                        {'45':'option_channel_type'},
+                        {'46':'option_scid_alias'},
+                        {'47':'option_scid_alias'},
+                        {'48':'option_payment_metadata'},
+                        {'49':'option_payment_metadata'},
+                        {'50':'option_zeroconf'},
+                        {'51':'option_zeroconf'}
+]
+
 # Feature bits templates 
 templates_index = [
                     {'implementation': 'CLN', 'version': 'UNKNOWN','Qty': 0}, #based on CLN v.23.05.2

@@ -55,6 +55,9 @@ class feature_bits:
             parts = key.split('.')
 
             if parts[4] == 'name':
+
+                # It will take the name of the flag from the bolt 9 spec
+                # If it is not found it will assume the one received on json file
                 for flag in bolt9_feature_flags:
                     if flag.get(parts[3]):
                         flag_name = flag[parts[3]]

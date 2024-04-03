@@ -1,4 +1,8 @@
-# BOLT #9: Assigned Feature Flags
+# Feature bits are specified in Bolt 9.
+# They let nodes publicly advertise that they support or require a given feature.
+# Feature bits in the 0-255 range are reserved for BOLTs: bLIPs must use feature bits above that range.
+# Custom feature bits used in the I Bolt 11 context must be <= 5114 due to the size limitations on tagged fields.
+# BOLT #9: Assigned Feature Flags. bLIPs where commented.
 bolt9_feature_flags = [
                         {'0':'option_data_loss_protect'},
                         {'1':'option_data_loss_protect'},
@@ -30,8 +34,20 @@ bolt9_feature_flags = [
                         {'27':'option_shutdown_anysegwit'},
                         {'28':'option_dual_fund'},
                         {'29':'option_dual_fund'},
+                        {'30':'amp'},                               # bolts/pull/658
+                        {'31':'amp'},                               # bolts/pull/658                        
+                        {'32':'option_alternative_feerates'},       # bolts/pull/1036
+                        {'33':'option_alternative_feerates'},       # bolts/pull/1036
+                        {'34':'option_quiesce'},                    # bolts/pull/869
+                        {'35':'option_quiesce'},                    # bolts/pull/869
+                        {'36':'option_attributable_error'},         # bolts/pull/1044
+                        {'37':'option_attributable_error'},         # bolts/pull/1044
                         {'38':'option_onion_messages'},
                         {'39':'option_onion_messages'},
+                        {'40':'want_peer_backup_storage'},          # bolts/pull/881
+                        {'41':'want_peer_backup_storage'},          # bolts/pull/881
+                        {'42':'provide_peer_backup_storage'},       # bolts/pull/881
+                        {'43':'provide_peer_backup_storage'},       # bolts/pull/881
                         {'44':'option_channel_type'},
                         {'45':'option_channel_type'},
                         {'46':'option_scid_alias'},
@@ -39,7 +55,23 @@ bolt9_feature_flags = [
                         {'48':'option_payment_metadata'},
                         {'49':'option_payment_metadata'},
                         {'50':'option_zeroconf'},
-                        {'51':'option_zeroconf'}
+                        {'51':'option_zeroconf'},
+                        {'52':'option_htlc_hold'},                  # bolts/pull/989
+                        {'53':'option_htlc_hold'},                  # bolts/pull/989
+                        {'54':'keysend'},                           # bLIP 3
+                        {'55':'keysend'},                           # bLIP 3
+                        {'56':'trampoline_routing'},                # bolts/pull/836
+                        {'57':'trampoline_routing'},                # bolts/pull/836
+                        {'60':'option_simple_close'},               # bolts/pull/1096
+                        {'61':'option_simple_close'},               # bolts/pull/1096
+                        {'62':'option_splice'},                     # bolts/pull/863
+                        {'63':'option_splice'},                     # bolts/pull/863
+                        {'64':'option_zero_reserve'},               # bolts/pull/1140
+                        {'65':'option_zero_reserve'},               # bolts/pull/1140
+                        {'106':'option_simplified_update'},         # bolts/pull/867
+                        {'107':'option_simplified_update'},         # bolts/pull/867
+                        {'256':'hosted_channels'},                  # bLIP 17
+                        {'257':'hosted_channels'}                   # bLIP 17
 ]
 
 # Feature bits templates 

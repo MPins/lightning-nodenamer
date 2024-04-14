@@ -85,6 +85,16 @@ This is the State Machine tha was coded to read the Graph JSON file.
 
 ![alt text](image.png)
 
+# Grafana integration
+
+## Underconstruction ##
+
+I'm creating a Grafana Dashboard to show the nodenamer results.
+
+I'm using Promta agent which ships the contents of local logs to a private Grafana Loki instance or Grafana Cloud.
+
+This way the change that is underconstruction is the creation of log files by Nodenamer.
+
 
 
 

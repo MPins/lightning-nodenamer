@@ -89,12 +89,19 @@ This is the State Machine tha was coded to read the Graph JSON file.
 
 ## Underconstruction ##
 
-I'm creating a Grafana Dashboard to show the nodenamer results.
+I'm creating a Grafana Dashboard to show the Lightning Nodenamer results.
 
-I'm using Promtail agent which ships the contents of local logs to a private Grafana Loki instance or Grafana Cloud.
+I'm using Promtail agent which ships the contents of local logs to a private Grafana Loki instance or Grafana Cloud (I'm using Grafana Cloud).
 
 This way the change that is underconstruction is the creation of log files by Nodenamer.
 
+Installing Promtail using Docker, modify tag to the most recent version.
+
+```sh
+docker pull grafana/promtail:2.9.2
+```
+
+Configuring Promtail to send logs, follow the instructions [here](https://grafana.com/docs/grafana-cloud/send-data/logs/collect-logs-with-promtail/#option-1-send-logs-from-a-standalone-host), I'm sending logs from a standalone host.
 
 
 

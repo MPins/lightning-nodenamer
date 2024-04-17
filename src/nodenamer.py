@@ -2,6 +2,7 @@ import sys
 import ijson
 import re
 import os
+import datetime
 
 # The definition of the finger print using the feature bits
 from feature_bits_templates import bolt9_feature_flags, templates_index, templates_list
@@ -319,11 +320,14 @@ def main(json_file):
                         new_output = {"id": node['id'], "implementation": imp_by_color, "version": 'UNKNOWN'}
                         output.append(new_output)
 
-        with open('nodenamer.csv', 'w', encoding='utf-8') as f_out:
+        with open('nodenamer.log', 'w', encoding='utf-8') as f_out:
             for node in output:
+                # Get the current date and time
+                current_datetime = datetime.datetime.now()
+                datetime_string = current_datetime.strftime("%Y-%m-%d %H:%M:%S.%f")
                 key = node.get('implementation')
                 counters[key] += 1            
-                line = node.get('id') + "," + node.get('implementation') + "," + node.get('version') + "\n"
+                line = datetime_string + " " + "IMPLEMENTATION=" + node.get('implementation') + " " + "VERSION=" + node.get('version') + " " + "ID=" + node.get('id') + "\n"
                 f_out.write(line)
 
         for label, qty in counters.items():

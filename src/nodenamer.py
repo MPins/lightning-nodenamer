@@ -198,7 +198,7 @@ def main(json_file):
         output_no_updates_temp = []
 
         #Initialize counters
-        counters = {'LND': 0, 'CLN': 0, 'ECLR': 0,'LDK': 0}
+        counters = {'LND': 0, 'CLN': 0, 'ECLR': 0,'LDK': 0,'UNKNOWN': 0,'NOFEATURES': 0,'NOUPDATE': 0}
         nodes_counter = 0
         channels_counter = 0
 
@@ -320,21 +320,18 @@ def main(json_file):
                         new_output = {"id": node['id'], "implementation": imp_by_color, "version": 'UNKNOWN'}
                         output.append(new_output)
 
-        with open('nodenamer.log', 'w', encoding='utf-8') as f_out:
-            for node in output:
-                # Get the current date and time
-                current_datetime = datetime.datetime.now()
-                datetime_string = current_datetime.strftime("%Y-%m-%d %H:%M:%S.%f")
-                key = node.get('implementation')
-                counters[key] += 1            
-                line = datetime_string + " " + "IMPLEMENTATION=" + node.get('implementation') + " " + "VERSION=" + node.get('version') + " " + "ID=" + node.get('id') + "\n"
-                f_out.write(line)
-
+        with open('nodenamer.log', 'a', encoding='utf-8') as f_out:
+            for node_list in [output, output_unknown, output_no_updates, output_no_features]:
+                for node in node_list:
+                    current_datetime = datetime.datetime.now()
+                    datetime_string = current_datetime.strftime("%Y-%m-%d %H:%M:%S.%f")
+                    key = node.get('implementation')
+                    counters[key] += 1            
+                    line = datetime_string + " " + "IMPLEMENTATION=" + node.get('implementation') + " " + "VERSION=" + node.get('version') + " " + "ID=" + node.get('id') + "\n"
+                    f_out.write(line)
+                 
         for label, qty in counters.items():
             print(f"{label}: {qty}")
-        print(f"UNKNOWN NODES: {len(output_unknown)}")
-        print(f"NO UPDATES NODES: {len(output_no_updates)}")
-        print(f"NO FEATURE BIT NODES: {len(output_no_features)}")
 
         # Order features_list by feature_bit
         ordered_features = sorted(fb.count, key=lambda x: int(x['feature_bit']))

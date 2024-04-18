@@ -84,15 +84,15 @@ templates_index = [
                     {'implementation': 'ECLR', 'version': 'UNKNOWN', 'Qty': 0}, #based on ECLR v0.7.0
                     {'implementation': 'CLN', 'version': 'UNKNOWN', 'Qty': 0}, #based on CLN v0.11.2
                     {'implementation': 'ECLR', 'version': 'UNKNOWN', 'Qty': 0}, #based on ECLR v0.6.2
-                    {'implementation': 'LND', 'version': 'Keysend','Qty': 0}, #base above + keysend 
-                    {'implementation': 'LND', 'version': 'Tap+Wumbo', 'Qty': 0}, #base above + Simple taproot Channels and wumbo channels
-                    {'implementation': 'LND', 'version': 'Tap', 'Qty': 0}, #base above + Simple taproot Channels
-                    {'implementation': 'LND', 'version': 'Wumbo', 'Qty': 0}, # base above + Wumbo channels
-                    {'implementation': 'LND', 'version': 'Wumbo+scid_alias+zero-conf', 'Qty': 0}, #base above + Wumbo + scid-alias + zero-conf
-                    {'implementation': 'LND', 'version': 'no-shutdwon_any_seg+key_send', 'Qty': 0}, #base above + keysend with no shutdown-any-segwit 
-                    {'implementation': 'LND', 'version': 'no-shutdwon_any_seg', 'Qty': 0}, #base above with no shutdown-any-segwit 
-                    {'implementation': 'LND', 'version': 'scid_alias+zero_conf', 'Qty': 0}, #base above + scid-alias + zero-conf 
-                    {'implementation': 'CLN', 'version': 'Wumbo','Qty': 0}, #base above + Wumbo                    
+                    {'implementation': 'LND', 'version': 'UNKNOWN','Qty': 0}, #base above + keysend 
+                    {'implementation': 'LND', 'version': 'UNKNOWN', 'Qty': 0}, #base above + Simple taproot Channels and wumbo channels
+                    {'implementation': 'LND', 'version': 'UNKNOWN', 'Qty': 0}, #base above + Simple taproot Channels
+                    {'implementation': 'LND', 'version': 'UNKNOWN', 'Qty': 0}, # base above + Wumbo channels
+                    {'implementation': 'LND', 'version': 'UNKNOWN', 'Qty': 0}, #base above + Wumbo + scid-alias + zero-conf
+                    {'implementation': 'LND', 'version': 'UNKNOWN', 'Qty': 0}, #base above + keysend with no shutdown-any-segwit 
+                    {'implementation': 'LND', 'version': 'UNKNOWN', 'Qty': 0}, #base above with no shutdown-any-segwit 
+                    {'implementation': 'LND', 'version': 'UNKNOWN', 'Qty': 0}, #base above + scid-alias + zero-conf 
+                    {'implementation': 'CLN', 'version': 'UNKNOWN','Qty': 0}, #base above + Wumbo                    
                     {'implementation' : 'UNKNOWN', 'version': 'UNKNOWN','Qty': 0}, 
                     {'implementation': 'NOFEATURES', 'version': 'NOFEATURES', 'Qty': 0},
                     {'implementation': 'NOUPDATE', 'version': 'NOUPDATE', 'Qty': 0}

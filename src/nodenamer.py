@@ -47,9 +47,9 @@ def feature_exists(feature, features_list):
 class feature_bits:
     def __init__(self):
         self.count = []
-        features_list = [{'feature_bit': 1, 'feature_name': 'data-loss-protect', 'is_required': False, 'is_known': True}]
+        self.log = []
 
-    def counter(self, data):
+    def counter(self, data, pubkey):
         # Accessing the features
         for key, value in data.items():
             # Splitting the key to extract information
@@ -76,6 +76,11 @@ class feature_bits:
                 if feature_exists(current_feature, self.count) is False:
                     current_feature['qty'] = 1
                     self.count.append(current_feature)
+                # Insert the node id at the starting of current_feature
+                # Insert the new key-value pair at the beginning of the dictionary
+                current_feature = {'nodeid': pubkey, **current_feature}
+                self.log.append (current_feature)
+                
             else:
                 # Raise a exception
                 raise Exception("Error on feature bits counter.")
@@ -232,7 +237,7 @@ def main(json_file):
                                     del sm.data[key]
 
                             # count the feature bits
-                            fb.counter(sm.data)
+                            fb.counter(sm.data, pubkey)
                             
                             template_found = False
                             # ***** FIRST LAYER ***** trying to identify the node using the feature bits
@@ -339,8 +344,15 @@ def main(json_file):
         # Function to print each item of the features bit list
         for feature in ordered_features:
             for key, value in feature.items():
-                print(f"{key}: {value}", end=", ")
+                print(f"{key}={value} ", end=" ")
             print()  # Move to the next line after printing all attributes of the item
+
+        with open('nodenamer-features.log', 'a', encoding='utf-8') as f_out:
+            for feature_log in fb.log:
+                current_datetime = datetime.datetime.now()
+                datetime_string = current_datetime.strftime("%Y-%m-%d %H:%M:%S.%f")
+                line = datetime_string + " nodeid=" + feature_log['nodeid'] + " feature_bit=" + feature_log['feature_bit'] + " feature_name=" + feature_log['feature_name'] + "\n" 
+                f_out.write(line)
 
     except Exception as e:
         print(f"An error occurred: {e}")

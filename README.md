@@ -87,13 +87,14 @@ This is the State Machine tha was coded to read the Graph JSON file.
 
 # Grafana integration
 
-## Underconstruction ##
-
-I'm creating a Grafana Dashboard to show the Lightning Nodenamer results.
+I created a [Grafana Dashboard](https://pins.grafana.net/public-dashboards/478199ff803c44138feb1439908e891f) to show the Lightning Nodenamer results.
 
 I'm using Promtail agent which ships the contents of local logs to a private Grafana Loki instance or Grafana Cloud (I'm using Grafana Cloud).
 
-This way the change that is underconstruction is the creation of log files by Nodenamer.
+Now the Nodenamer creates 3 log files:
+- nodenamer.log - each line on the log brings the pubkey, the implementation and version
+- nodenamer-features.log - each line on the log brings the bubkey and the feature bit, one line for each feature of each node. Grafana Cloud compleined about the data ingestion rate, for this reason the third log file was implemented and this one is not being used yet.
+- nodenamer-features-total.log - just one line for eache feature bit that brings the amount of nodes using that feature.
 
 Installing Promtail using Docker, modify tag to the most recent version.
 
@@ -102,6 +103,8 @@ docker pull grafana/promtail:2.9.2
 ```
 
 Configuring Promtail to send logs, follow the instructions [here](https://grafana.com/docs/grafana-cloud/send-data/logs/collect-logs-with-promtail/#option-1-send-logs-from-a-standalone-host), I'm sending logs from a standalone host.
+
+The grafana json file that exports the dashboard you can see [here](https://pins.grafana.net/public-dashboards/478199ff803c44138feb1439908e891f) is found on the main folder of the project with the name (lightning-nodenamer-1713831489156.json)
 
 
 

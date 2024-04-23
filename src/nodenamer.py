@@ -342,10 +342,17 @@ def main(json_file):
         ordered_features = sorted(fb.count, key=lambda x: int(x['feature_bit']))
 
         # Function to print each item of the features bit list
-        for feature in ordered_features:
-            for key, value in feature.items():
-                print(f"{key}={value} ", end=" ")
-            print()  # Move to the next line after printing all attributes of the item
+        with open('nodenamer-features-total.log', 'a', encoding='utf-8') as f_out:
+            for feature in ordered_features:                
+                current_datetime = datetime.datetime.now()
+                datetime_string = current_datetime.strftime("%Y-%m-%d %H:%M:%S.%f")
+                line = datetime_string
+                for key, value in feature.items():
+                    print(f"{key}={value} ", end=" ")
+                    line = line + " " + key + "=" + str(value)
+                line = line + "\n"
+                f_out.write(line)
+                print()  # Move to the next line after printing all attributes of the item
 
         with open('nodenamer-features.log', 'a', encoding='utf-8') as f_out:
             for feature_log in fb.log:

@@ -207,6 +207,11 @@ def main(json_file):
         nodes_counter = 0
         channels_counter = 0
 
+        # intialize the counters where the node is identified
+        counter_feature_bits = 0
+        counter_channel_policy = 0
+        counter_color = 0
+
         # Create an instance of the state machine
         sm = state_machine()
 
@@ -238,7 +243,7 @@ def main(json_file):
 
                             # count the feature bits
                             fb.counter(sm.data, pubkey)
-                            
+
                             template_found = False
                             # ***** FIRST LAYER ***** trying to identify the node using the feature bits
                             for i, template in enumerate(templates_list):
@@ -248,6 +253,7 @@ def main(json_file):
                                     templates_index[i]['Qty'] += 1
                                     new_output = {"id": pubkey, "implementation": templates_index[i]['implementation'], "version": templates_index[i]['version']}
                                     output.append(new_output)
+                                    counter_feature_bits += 1
                             
                             # If not found a template of features bits inserting this node as UNKOWN
                             # We are going to figure out the node implementation using the channel default policies
@@ -308,6 +314,7 @@ def main(json_file):
             if node[max_key] > 0:
                 new_output = {"id": node['id'], "implementation": max_key, "version": 'UNKNOWN'}
                 output.append(new_output)
+                counter_channel_policy += 1
             else:
                 # ***** THIRD LAYER ***** trying to identify the node using the defaul node color
                 imp_by_color = implementation_by_color(node['color'])
@@ -324,6 +331,7 @@ def main(json_file):
                 else:
                         new_output = {"id": node['id'], "implementation": imp_by_color, "version": 'UNKNOWN'}
                         output.append(new_output)
+                        counter_color += 1
 
         with open('nodenamer.log', 'a', encoding='utf-8') as f_out:
             for node_list in [output, output_unknown, output_no_updates, output_no_features]:
@@ -353,6 +361,8 @@ def main(json_file):
                 line = line + "\n"
                 f_out.write(line)
                 print()  # Move to the next line after printing all attributes of the item
+
+        print(f"Nodes identified by Feature Bits = {counter_feature_bits}, Channels Policy = {counter_channel_policy}, Color = {counter_color}")
 
         with open('nodenamer-features.log', 'a', encoding='utf-8') as f_out:
             for feature_log in fb.log:

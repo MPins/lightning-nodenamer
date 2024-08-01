@@ -3,6 +3,8 @@ import ijson
 import re
 import os
 import datetime
+import json
+from collections import Counter
 
 # The definition of the finger print using the feature bits
 from feature_bits_templates import bolt9_feature_flags, templates_index, templates_list
@@ -201,7 +203,10 @@ def main(json_file):
         output_no_updates = []
         output_no_features_temp = []
         output_no_updates_temp = []
-
+        list_of_unknown_fingerprint = []
+        final_list_of_unknown_fingerprint = []
+        counter_of_unknown_fingerprint = []
+        
         #Initialize counters
         counters = {'LND': 0, 'CLN': 0, 'ECLR': 0,'LDK': 0,'UNKNOWN': 0,'NOFEATURES': 0,'NOUPDATE': 0}
         nodes_counter = 0
@@ -270,6 +275,12 @@ def main(json_file):
                                 templates_index[len(templates_index)-1]['Qty'] += 1
                                 new_output = {"id": pubkey, "color": node_color, "implementation": "NOUPDATE", "version": "NOUPDATE", 'LND': 0, 'LDK': 0, 'CLN': 0, 'ECLR': 0}
                                 output_no_updates_temp.append(new_output)
+
+                            # Storing the features fingerprints that was not found on the templates
+
+                            if template_found == False and sm.data != {}:
+                                list_of_unknown_fingerprint.append(sm.data)
+                                
                         # ***** SECOND LAYER ***** trying to identify the node using the defaul channel policies (continue)         
                         elif sm.data['data_type'] == "edges":
                             channels_counter += 1
@@ -299,7 +310,15 @@ def main(json_file):
                                          
             except ijson.JSONError as e:
                 print(f"Error parsing JSON: {e}")                
+
+        for i in range(len(list_of_unknown_fingerprint)):
+            if list_of_unknown_fingerprint[i] not in final_list_of_unknown_fingerprint:
+                final_list_of_unknown_fingerprint.append(list_of_unknown_fingerprint[i]) 
+                counter_of_unknown_fingerprint.append(list_of_unknown_fingerprint.count(list_of_unknown_fingerprint[i]))
+
+
         print()
+
         # ***** SECOND LAYER ***** trying to identify the node using the defaul channel policies
         # Take the nodes data stored on output_unknown and use it to try identifying them
         output_temp.extend(output_no_features_temp)

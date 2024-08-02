@@ -3,7 +3,6 @@ import ijson
 import re
 import os
 import datetime
-import json
 from collections import Counter
 
 # The definition of the finger print using the feature bits
@@ -277,7 +276,6 @@ def main(json_file):
                                 output_no_updates_temp.append(new_output)
 
                             # Storing the features fingerprints that was not found on the templates
-
                             if template_found == False and sm.data != {}:
                                 list_of_unknown_fingerprint.append(sm.data)
                                 
@@ -311,11 +309,14 @@ def main(json_file):
             except ijson.JSONError as e:
                 print(f"Error parsing JSON: {e}")                
 
-        for i in range(len(list_of_unknown_fingerprint)):
-            if list_of_unknown_fingerprint[i] not in final_list_of_unknown_fingerprint:
-                final_list_of_unknown_fingerprint.append(list_of_unknown_fingerprint[i]) 
-                counter_of_unknown_fingerprint.append(list_of_unknown_fingerprint.count(list_of_unknown_fingerprint[i]))
-
+        # Using the unknown fingerprints to discover new templates
+        with open('nodenamer-unknown-fingerprints.txt', 'w', encoding='utf-8') as f_out:
+            for i in range(len(list_of_unknown_fingerprint)):
+                if list_of_unknown_fingerprint[i] not in final_list_of_unknown_fingerprint:
+                    final_list_of_unknown_fingerprint.append(list_of_unknown_fingerprint[i]) 
+                    counter_of_unknown_fingerprint.append(list_of_unknown_fingerprint.count(list_of_unknown_fingerprint[i]))
+                    line = str(counter_of_unknown_fingerprint[-1]) + " " + str(final_list_of_unknown_fingerprint[-1]) + "\n"
+                    f_out.write(line)
 
         print()
 
@@ -352,7 +353,7 @@ def main(json_file):
                         output.append(new_output)
                         counter_color += 1
 
-        with open('nodenamer.log', 'a', encoding='utf-8') as f_out:
+        with open('nodenamer.log', 'w', encoding='utf-8') as f_out:
             for node_list in [output, output_unknown, output_no_updates, output_no_features]:
                 for node in node_list:
                     current_datetime = datetime.datetime.now()
@@ -369,7 +370,7 @@ def main(json_file):
         ordered_features = sorted(fb.count, key=lambda x: int(x['feature_bit']))
 
         # Function to print each item of the features bit list
-        with open('nodenamer-features-total.log', 'a', encoding='utf-8') as f_out:
+        with open('nodenamer-features-total.log', 'w', encoding='utf-8') as f_out:
             for feature in ordered_features:                
                 current_datetime = datetime.datetime.now()
                 datetime_string = current_datetime.strftime("%Y-%m-%d %H:%M:%S.%f")
@@ -383,7 +384,7 @@ def main(json_file):
 
         print(f"Nodes identified by Feature Bits = {counter_feature_bits}, Channels Policy = {counter_channel_policy}, Color = {counter_color}")
 
-        with open('nodenamer-features.log', 'a', encoding='utf-8') as f_out:
+        with open('nodenamer-features.log', 'w', encoding='utf-8') as f_out:
             for feature_log in fb.log:
                 current_datetime = datetime.datetime.now()
                 datetime_string = current_datetime.strftime("%Y-%m-%d %H:%M:%S.%f")

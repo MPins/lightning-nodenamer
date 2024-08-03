@@ -3,10 +3,13 @@ import ijson
 import re
 import os
 import datetime
+import time
 from collections import Counter
 
 # The definition of the finger print using the feature bits
 from feature_bits_templates import bolt9_feature_flags, templates_index, templates_list
+
+SECONDS_IN_A_YEAR = 365 * 24 * 60 * 60
 
 # This function receives input JSON file and create the new output JSON file 
 # without the alias field.
@@ -211,6 +214,8 @@ def main(json_file):
         nodes_counter = 0
         channels_counter = 0
 
+        current_unix_time = int(time.time())
+
         # intialize the counters where the node is identified
         counter_feature_bits = 0
         counter_channel_policy = 0
@@ -262,22 +267,19 @@ def main(json_file):
                             # If not found a template of features bits inserting this node as UNKOWN
                             # We are going to figure out the node implementation using the channel default policies
                             # And the default color captured above
-                            if template_found == False and last_update != 0 and len(sm.data) > 0:
+                            if template_found == False and last_update > (current_unix_time - SECONDS_IN_A_YEAR) and len(sm.data) > 0:
                                 templates_index[len(templates_index)-3]['Qty'] += 1
                                 new_output = {"id": pubkey, "color": node_color, "implementation": "UNKNOWN", "version": "UNKNOWN", 'LND': 0, 'LDK': 0, 'CLN': 0, 'ECLR': 0}
                                 output_temp.append(new_output)
-                            if template_found == False and last_update != 0 and len(sm.data) == 0:
+                                list_of_unknown_fingerprint.append(sm.data)
+                            if template_found == False and last_update > (current_unix_time - SECONDS_IN_A_YEAR) and len(sm.data) == 0:
                                 templates_index[len(templates_index)-2]['Qty'] += 1
                                 new_output = {"id": pubkey, "color": node_color, "implementation": "NOFEATURES", "version": "NOFEATURES", 'LND': 0, 'LDK': 0, 'CLN': 0, 'ECLR': 0}
                                 output_no_features_temp.append(new_output)                    
-                            if template_found == False and last_update == 0:
+                            if template_found == False and last_update < (current_unix_time - SECONDS_IN_A_YEAR):
                                 templates_index[len(templates_index)-1]['Qty'] += 1
                                 new_output = {"id": pubkey, "color": node_color, "implementation": "NOUPDATE", "version": "NOUPDATE", 'LND': 0, 'LDK': 0, 'CLN': 0, 'ECLR': 0}
                                 output_no_updates_temp.append(new_output)
-
-                            # Storing the features fingerprints that was not found on the templates
-                            if template_found == False and sm.data != {}:
-                                list_of_unknown_fingerprint.append(sm.data)
                                 
                         # ***** SECOND LAYER ***** trying to identify the node using the defaul channel policies (continue)         
                         elif sm.data['data_type'] == "edges":

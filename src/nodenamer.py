@@ -402,7 +402,7 @@ if __name__ == "__main__":
         sys.exit(1)
     json_file = sys.argv[1]
 
-    # create another file ignoring the alias field due the erros it cause whe parsing it
+    # create another file ignoring the alias field due the erros it cause when parsing it
     # because of unexpected characteres
     file_name, file_extension = os.path.splitext(json_file)
 

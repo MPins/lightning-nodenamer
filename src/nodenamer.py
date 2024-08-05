@@ -98,85 +98,85 @@ class state_machine:
     def event(self, event, prefix, data):
 
         if self.state == 'initial' and event == 'start_map':
-            # print("Transitioning from 'initial' to 'map_started' event:", event, "prefix:", prefix, "data:",data)
+            # Transitioning from 'initial' to 'map_started'
             self.state = 'map_started'
             return False
         elif self.state == 'map_started' and event == 'map_key':
-            # print("Transitioning from 'map_started' to 'mapping' event:", event, "prefix:", prefix, "data:",data)
+            # "Transitioning from 'map_started' to 'mapping'
             self.state = 'mapping'
             return False
         elif self.state == 'map_started' and event == 'end_map':
-            # print("Transitioning from 'map_started' to 'map_ended' event:", event, "prefix:", prefix, "data:",data)
+            # "Transitioning from 'map_started' to 'map_ended'
             self.state = 'map_ended'
             return False
         elif self.state == 'mapping' and event == 'start_map':
-            # print("Transitioning from 'mapping' to 'map_started' event:", event, "prefix:", prefix, "data:",data)
+            # ("Transitioning from 'mapping' to 'map_started'
             self.state = 'map_started'
             return False
         elif self.state == 'mapping' and event == 'start_array':
-            # print("Transitioning from 'mapping' to 'array_started' event:", event, "prefix:", prefix, "data:",data)
+            # Transitioning from 'mapping' to 'array_started'
             self.state = 'array_started'
             return False
         elif self.state == 'mapping' and event == 'null':
-            # print("Transitioning from 'mapping' to 'mapped' event:", event, "prefix:", prefix, "data:",data)
+            # Transitioning from 'mapping' to 'mapped'
             self.state = 'mapped'
             # Add a new key-value pair to the data field
             self.data[prefix] = ""
             return False
         elif self.state == 'mapping' and event == 'number':
-            # print("Transitioning from 'mapping' to 'mapped' event:", event, "prefix:", prefix, "data:",data)
+            # Transitioning from 'mapping' to 'mapped'
             self.state = 'mapped'
             # Add a new key-value pair to the data field
             self.data[prefix] = data
             return False
         elif self.state == 'mapping' and event == 'string':
-            # print("Transitioning from 'mapping' to 'mapped' event:", event, "prefix:", prefix, "data:",data)
+            # Transitioning from 'mapping' to 'mapped'
             self.state = 'mapped'
             # Add a new key-value pair to the data field
             self.data[prefix] = data
             return False
         elif self.state == 'mapping' and event == 'boolean':
-            # print("Transitioning from 'mapping' to 'mapped' event:", event, "prefix:", prefix, "data:",data)
+            # Transitioning from 'mapping' to 'mapped'
             self.state = 'mapped'
             # Add a new key-value pair to the data field
             self.data[prefix] = data
             return False
         elif self.state == 'array_started' and event == 'start_map':
-            # print("Transitioning from 'array_started' to 'map_started' event:", event, "prefix:", prefix, "data:",data)
+            # Transitioning from 'array_started' to 'map_started'
             self.state = 'map_started'           
             pieces = prefix.split('.')
             # If the prefix field has 2 pieces (e.g. "nodes.item") we initate the data field with nodes or edges
             if len(pieces) == 2: self.data = {"data_type":pieces[0]}
             return False 
         elif self.state == 'array_started' and event == 'end_array':
-            # print("Transitioning from 'array_started' to 'array_ended' event:", event, "prefix:", prefix, "data:",data)
+            # Transitioning from 'array_started' to 'array_ended'
             self.state = 'array_ended'
             return False
         elif self.state == 'mapped' and event == 'map_key':
-            # print("Transitioning from 'mapped' to 'mapping' event:", event, "prefix:", prefix, "data:",data)
+            # Transitioning from 'mapped' to 'mapping'
             self.state = 'mapping'
             return False
         elif self.state == 'mapped' and event == 'end_map':
-            # print("Transitioning from 'mapped' to 'map_ended' event:", event, "prefix:", prefix, "data:",data)
+            # Transitioning from 'mapped' to 'map_ended'
             self.state = 'map_ended'
             return False
         elif self.state == 'map_ended' and event == 'end_array':
-            # print("Transitioning from 'map_ended' to 'array_ended' event:", event, "prefix:", prefix, "data:",data)
+            # Transitioning from 'map_ended' to 'array_ended'
             self.state = 'array_ended'
             return False
         elif self.state == 'map_ended' and event == 'start_map':
-            # print("Transitioning from 'map_ended' to 'map_started' event:", event, "prefix:", prefix, "data:",data)
+            # Transitioning from 'map_ended' to 'map_started'
             self.state = 'map_started'
             pieces = prefix.split('.')
             # If the prefix field has 2 pieces (e.g. "nodes.item") we initate the data field
             if len(pieces) == 2: self.data = {"data_type":pieces[0]}            
             return False
         elif self.state == 'map_ended' and event == 'map_key':
-            # print("Transitioning from 'map_ended' to 'mapping' event:", event, "prefix:", prefix, "data:",data)
+            # Transitioning from 'map_ended' to 'mapping'
             self.state = 'mapping'
             return False
         elif self.state == 'map_ended' and event == 'end_map':
-            # print("Transitioning from 'map_ended' to 'map_ended' event:", event, "prefix:", prefix, "data:",data)
+            # Transitioning from 'map_ended' to 'map_ended'
             self.state = 'map_ended'
             pieces = prefix.split('.')
             # If the prefix field has 2 pieces (e.g. "nodes.item") we return true.
@@ -184,11 +184,11 @@ class state_machine:
             # imeddiatelly, because he might be initialised during the forward interactions
             if len(pieces) == 2: return True
         elif self.state == 'array_ended' and event == 'map_key':
-            # print("Transitioning from 'array_ended' to 'mapping' event:", event, "prefix:", prefix, "data:",data)
+            # Transitioning from 'array_ended' to 'mapping'
             self.state = 'mapping'
             return False
         elif self.state == 'array_ended' and event == 'end_map':
-            # print("Transitioning from 'array_ended' to 'final' event:", event, "prefix:", prefix, "data:",data)
+            # Transitioning from 'array_ended' to 'final'
             self.state = 'final'
             return False
         else:

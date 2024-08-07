@@ -106,6 +106,9 @@ Configuring Promtail to send logs, follow the instructions [here](https://grafan
 
 The grafana json file that exports the dashboard you can see [here](https://pins.grafana.net/public-dashboards/478199ff803c44138feb1439908e891f) is found on the main folder of the project with the name (lightning-nodenamer-1713831489156.json)
 
+# Feature bits fingerprint file
+
+Additionaly the file nodenamer-unknown-fingerprints.txt is generated. It contains the unknown fingerprints and the reason to generate it is helping to identify new fingerprints during the use of nodenamer.
 
 
 

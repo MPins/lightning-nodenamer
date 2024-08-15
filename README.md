@@ -47,7 +47,7 @@ git clone https://github.com/MPins/lightning-nodenamer
 Go to the source directory and make sure you can run the `nodenamer.py` python program.
 
 ```sh
-python nodenamer.py <json_file>
+python nodenamer.py <json_file> <log_dir>
 ```
 
 You can start using some json file examples on the graphs sub-directory. The nodenamer will create the nodenamer.csv as output.
@@ -112,7 +112,7 @@ The grafana json file that exports the dashboard you can see [here](https://pins
 
 # Feature Bits Fingerprint File
 
-Additionaly the file nodenamer-unknown-fingerprints.txt is generated. It contains the unknown fingerprints and the reason to generate it is helping to identify new fingerprints during the use of nodenamer.
+Additionaly the file nodenamer-unknown-fingerprints.txt is generated at the same dirextory of the json graph file. It contains the unknown fingerprints and the reason to generate it is helping to identify new fingerprints during the use of nodenamer.
 
 
 

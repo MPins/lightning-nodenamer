@@ -12,7 +12,7 @@ Examples of default values:
 - Default generated node aliases or RGB colors.
 
 Input format:
-- A json description of the public graph. See the ones we use to start developing this project on graphs directory. We get it running the following command on a LND node:
+- A json description of the public graph. See the ones we use to start developing this project on graphs folder. We get it running the following command on a LND node:
     - lncli describegraph
 
 Output (nodenamer.log) with the node IDs, implementation names and version numbers:
@@ -44,17 +44,19 @@ To run the Nodenamer is very simple, just clone the git repository on your machi
 git clone https://github.com/MPins/lightning-nodenamer
 ```
 
-Go to the source directory and make sure you can run the `nodenamer.py` python program.
+Go to the source folder and make sure you can run the `nodenamer.py` python program.
 
 ```sh
 python nodenamer.py <json_file> <log_dir>
 ```
 
-You can start using some json file examples on the graphs sub-directory. The nodenamer will create the nodenamer.csv as output.
+You can start using some json file examples on the graphs folder. The nodenamer will create the following files:
+- nodenamer.log, nodenamer-features.log and nodenamer-features-total.log into the <log_dir> folder indicate in the command line.
+- nodenamer-unknown-fingerprints.txt into the same folder of the graph file folder indicate in the command line.
 
 # Screen Output
 
-Besides the nodenamer.csv the program will show the following information on the screen
+Besides the files created the program will show the following information on the screen
 
 - Nodes: #of_nodes | Channels: #of_channels
 - LND: #total of LND nodes
@@ -104,7 +106,7 @@ docker pull grafana/promtail:2.9.2
 
 Configuring Promtail to send logs, follow the instructions [here](https://grafana.com/docs/grafana-cloud/send-data/logs/collect-logs-with-promtail/#option-1-send-logs-from-a-standalone-host), I'm sending logs from a standalone host.
 
-The grafana json file that exports the dashboard you can see [here](https://pins.grafana.net/public-dashboards/478199ff803c44138feb1439908e891f) is found on the main folder of the project with the name (lightning-nodenamer-1713831489156.json)
+The grafana json file that exports the dashboard you can see [here](https://pins.grafana.net/public-dashboards/478199ff803c44138feb1439908e891f) is found on the main folder of the project with the name [lightning-nodenamer-grafana-dashboard.json](lightning-nodenamer-grafana-dashboard.json)
 
 # Grafana Dashboard JSON File
 

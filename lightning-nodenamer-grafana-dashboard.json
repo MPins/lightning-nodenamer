@@ -26,7 +26,7 @@
         "type": "loki",
         "uid": "grafanacloud-logs"
       },
-      "description": "updated on 08/07/2024",
+      "description": "updated on 08/16/2024",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -70,7 +70,7 @@
         "textMode": "value_and_name",
         "wideLayout": true
       },
-      "pluginVersion": "11.2.0-73830",
+      "pluginVersion": "11.2.0-74515",
       "targets": [
         {
           "datasource": {
@@ -156,8 +156,124 @@
           "refId": "NOFEATURES"
         }
       ],
-      "title": "Node Implementations",
+      "title": "Total Numbers",
       "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "loki",
+        "uid": "grafanacloud-logs"
+      },
+      "description": "This calculation diisregard the nodes that send no features bit updates during the last 12 months.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "text",
+            "mode": "fixed"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 24,
+        "x": 0,
+        "y": 6
+      },
+      "id": 6,
+      "options": {
+        "minVizHeight": 75,
+        "minVizWidth": 75,
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": false,
+        "sizing": "auto"
+      },
+      "pluginVersion": "11.2.0-74515",
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "grafanacloud-logs"
+          },
+          "editorMode": "code",
+          "expr": "sum(count_over_time({filename=\"/var/log/nodenamer.log\"} |= `LND` [24h])) * 100 / ( sum(count_over_time({filename=\"/var/log/nodenamer.log\"} |= `LND` [24h])) + sum(count_over_time({filename=\"/var/log/nodenamer.log\"} |= `CLN` [24h])) + sum(count_over_time({filename=\"/var/log/nodenamer.log\"} |= `ECLR` [24h])) + sum(count_over_time({filename=\"/var/log/nodenamer.log\"} |= `LDK` [24h])) + sum(count_over_time({filename=\"/var/log/nodenamer.log\"} |= `IMPLEMENTATION=UNKNOWN` [24h])))",
+          "legendFormat": "LND%",
+          "queryType": "range",
+          "refId": "LND%"
+        },
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "grafanacloud-logs"
+          },
+          "editorMode": "code",
+          "expr": "sum(count_over_time({filename=\"/var/log/nodenamer.log\"} |= `ECLR` [24h])) * 100 / ( sum(count_over_time({filename=\"/var/log/nodenamer.log\"} |= `LND` [24h])) + sum(count_over_time({filename=\"/var/log/nodenamer.log\"} |= `CLN` [24h])) + sum(count_over_time({filename=\"/var/log/nodenamer.log\"} |= `ECLR` [24h])) + sum(count_over_time({filename=\"/var/log/nodenamer.log\"} |= `LDK` [24h])) + sum(count_over_time({filename=\"/var/log/nodenamer.log\"} |= `IMPLEMENTATION=UNKNOWN` [24h])))",
+          "hide": false,
+          "legendFormat": "ECLR%",
+          "queryType": "range",
+          "refId": "ECLR%"
+        },
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "grafanacloud-logs"
+          },
+          "editorMode": "code",
+          "expr": "sum(count_over_time({filename=\"/var/log/nodenamer.log\"} |= `CLN` [24h])) * 100 / ( sum(count_over_time({filename=\"/var/log/nodenamer.log\"} |= `LND` [24h])) + sum(count_over_time({filename=\"/var/log/nodenamer.log\"} |= `CLN` [24h])) + sum(count_over_time({filename=\"/var/log/nodenamer.log\"} |= `ECLR` [24h])) + sum(count_over_time({filename=\"/var/log/nodenamer.log\"} |= `LDK` [24h])) + sum(count_over_time({filename=\"/var/log/nodenamer.log\"} |= `IMPLEMENTATION=UNKNOWN` [24h])))",
+          "hide": false,
+          "legendFormat": "CLN%",
+          "queryType": "range",
+          "refId": "CLN%"
+        },
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "grafanacloud-logs"
+          },
+          "editorMode": "code",
+          "expr": "sum(count_over_time({filename=\"/var/log/nodenamer.log\"} |= `LDK` [24h])) * 100 / ( sum(count_over_time({filename=\"/var/log/nodenamer.log\"} |= `LND` [24h])) + sum(count_over_time({filename=\"/var/log/nodenamer.log\"} |= `CLN` [24h])) + sum(count_over_time({filename=\"/var/log/nodenamer.log\"} |= `ECLR` [24h])) + sum(count_over_time({filename=\"/var/log/nodenamer.log\"} |= `LDK` [24h])) + sum(count_over_time({filename=\"/var/log/nodenamer.log\"} |= `IMPLEMENTATION=UNKNOWN` [24h])))",
+          "hide": false,
+          "legendFormat": "LDK%",
+          "queryType": "range",
+          "refId": "LDK%"
+        },
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "grafanacloud-logs"
+          },
+          "editorMode": "code",
+          "expr": "sum(count_over_time({filename=\"/var/log/nodenamer.log\"} |= `LDK` [24h])) * 100 / ( sum(count_over_time({filename=\"/var/log/nodenamer.log\"} |= `LND` [24h])) + sum(count_over_time({filename=\"/var/log/nodenamer.log\"} |= `CLN` [24h])) + sum(count_over_time({filename=\"/var/log/nodenamer.log\"} |= `ECLR` [24h])) + sum(count_over_time({filename=\"/var/log/nodenamer.log\"} |= `LDK` [24h])) + sum(count_over_time({filename=\"/var/log/nodenamer.log\"} |= `IMPLEMENTATION=UNKNOWN` [24h])))",
+          "hide": false,
+          "legendFormat": "UNKNOWN%",
+          "queryType": "range",
+          "refId": "UNKNOWN%"
+        }
+      ],
+      "title": "Percentage Numbers",
+      "type": "gauge"
     },
     {
       "datasource": {
@@ -189,7 +305,7 @@
         "h": 12,
         "w": 12,
         "x": 0,
-        "y": 6
+        "y": 12
       },
       "id": 3,
       "options": {
@@ -213,7 +329,7 @@
         "textMode": "value_and_name",
         "wideLayout": true
       },
-      "pluginVersion": "11.2.0-73830",
+      "pluginVersion": "11.2.0-74515",
       "targets": [
         {
           "datasource": {
@@ -488,7 +604,7 @@
         "h": 12,
         "w": 12,
         "x": 12,
-        "y": 6
+        "y": 12
       },
       "id": 4,
       "options": {
@@ -512,7 +628,7 @@
         "textMode": "value_and_name",
         "wideLayout": true
       },
-      "pluginVersion": "11.2.0-73830",
+      "pluginVersion": "11.2.0-74515",
       "targets": [
         {
           "datasource": {
@@ -773,6 +889,6 @@
   "timezone": "browser",
   "title": "Lightning Nodenamer",
   "uid": "bdj1qfbsea3uoe",
-  "version": 52,
+  "version": 61,
   "weekStart": ""
 }

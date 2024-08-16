@@ -101,7 +101,7 @@ Now the Nodenamer creates 3 log files:
 Installing Promtail using Docker, modify tag to the most recent version.
 
 ```sh
-docker pull grafana/promtail:2.9.2
+docker pull grafana/promtail:latest
 ```
 
 Configuring Promtail to send logs, follow the instructions [here](https://grafana.com/docs/grafana-cloud/send-data/logs/collect-logs-with-promtail/#option-1-send-logs-from-a-standalone-host), I'm sending logs from a standalone host.

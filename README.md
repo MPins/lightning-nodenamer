@@ -36,7 +36,7 @@ Run the following command to install the `ijson` library
 pip install ijson
 ```
 
-# How to run
+# How to Run
 
 To run the Nodenamer is very simple, just clone the git repository on your machine.
 
@@ -69,7 +69,7 @@ Besides the files created the program will show the following information on the
 
 - Additionaly it will output the counting of each feature bits encountered on each node
 
-# Understanding the approach
+# Understanding the Approach
 
 The programm approach the node implementation identification using 3 layers of information:
 
@@ -87,7 +87,7 @@ This is the State Machine tha was coded to read the Graph JSON file.
 
 ![alt text](image.png)
 
-# Grafana integration
+# Grafana Integration
 
 I created a [Grafana Dashboard](https://pins.grafana.net/public-dashboards/478199ff803c44138feb1439908e891f) to show the Lightning Nodenamer results.
 

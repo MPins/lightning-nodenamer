@@ -400,6 +400,15 @@ def main(json_file, log_dir):
                 line = datetime_string + " nodeid=" + feature_log['nodeid'] + " feature_bit=" + feature_log['feature_bit'] + " feature_name=" + feature_log['feature_name'] + "\n" 
                 f_out.write(line)
 
+        # The fingerprints.txt file will be located on tha same directory of graph json file
+        # It point the qty of each template found
+        file_dir = os.path.dirname(json_file)
+        filename = os.path.join(file_dir, "fingerprints.txt")
+        with open(filename, 'w', encoding='utf-8') as f_out:
+            for i, template in enumerate(templates_index):
+                line = str(i) + " " + str(template['Qty']) + "\n"
+                f_out.write(line)
+
     except Exception as e:
         print(f"An error occurred: {e}")
 

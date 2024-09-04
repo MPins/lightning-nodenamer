@@ -47,10 +47,13 @@ git clone https://github.com/MPins/lightning-nodenamer
 Go to the source folder and make sure you can run the `nodenamer.py` python program.
 
 ```sh
-python nodenamer.py <json_file> <log_dir>
+python nodenamer.py <graph json_file> <log_dir>
 ```
 
-You can start using some json file examples on the graphs folder. The nodenamer will create the following files:
+You can start using some graph json file examples on the graphs folder. For real results you have to create the graph json file
+running the command `lncli describegraph` on your LND node.
+
+The nodenamer will create the following files:
 - nodenamer.log, nodenamer-features.log and nodenamer-features-total.log into the <log_dir> folder indicate in the command line.
 - nodenamer-unknown-fingerprints.txt into the same folder of the graph file folder indicate in the command line.
 

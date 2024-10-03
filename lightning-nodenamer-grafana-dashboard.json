@@ -15,18 +15,32 @@
       }
     ]
   },
+  "description": "Visit the github https://github.com/MPins/lightning-nodenamer",
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
   "id": 16,
-  "links": [],
+  "links": [
+    {
+      "asDropdown": false,
+      "icon": "external link",
+      "includeVars": false,
+      "keepTime": false,
+      "tags": [],
+      "targetBlank": false,
+      "title": "New link",
+      "tooltip": "",
+      "type": "link",
+      "url": ""
+    }
+  ],
   "panels": [
     {
       "datasource": {
         "type": "loki",
         "uid": "grafanacloud-logs"
       },
-      "description": "updated on 08/16/2024",
+      "description": "Updated daily\nhttps://github.com/MPins/lightning-nodenamer",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -70,7 +84,7 @@
         "textMode": "value_and_name",
         "wideLayout": true
       },
-      "pluginVersion": "11.2.0-74515",
+      "pluginVersion": "11.3.0-76761",
       "targets": [
         {
           "datasource": {
@@ -164,13 +178,14 @@
         "type": "loki",
         "uid": "grafanacloud-logs"
       },
-      "description": "This calculation diisregard the nodes that send no features bit updates during the last 12 months.",
+      "description": "This calculation disregard the nodes that send no features bit updates during the last 12 months.",
       "fieldConfig": {
         "defaults": {
           "color": {
             "fixedColor": "text",
             "mode": "fixed"
           },
+          "decimals": 2,
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -184,7 +199,8 @@
                 "value": 80
               }
             ]
-          }
+          },
+          "unit": "locale"
         },
         "overrides": []
       },
@@ -210,7 +226,7 @@
         "showThresholdMarkers": false,
         "sizing": "auto"
       },
-      "pluginVersion": "11.2.0-74515",
+      "pluginVersion": "11.3.0-76761",
       "targets": [
         {
           "datasource": {
@@ -219,7 +235,7 @@
           },
           "editorMode": "code",
           "expr": "sum(count_over_time({filename=\"/var/log/nodenamer.log\"} |= `LND` [24h])) * 100 / ( sum(count_over_time({filename=\"/var/log/nodenamer.log\"} |= `LND` [24h])) + sum(count_over_time({filename=\"/var/log/nodenamer.log\"} |= `CLN` [24h])) + sum(count_over_time({filename=\"/var/log/nodenamer.log\"} |= `ECLR` [24h])) + sum(count_over_time({filename=\"/var/log/nodenamer.log\"} |= `LDK` [24h])) + sum(count_over_time({filename=\"/var/log/nodenamer.log\"} |= `IMPLEMENTATION=UNKNOWN` [24h])))",
-          "legendFormat": "LND%",
+          "legendFormat": "LND %",
           "queryType": "range",
           "refId": "LND%"
         },
@@ -231,7 +247,7 @@
           "editorMode": "code",
           "expr": "sum(count_over_time({filename=\"/var/log/nodenamer.log\"} |= `ECLR` [24h])) * 100 / ( sum(count_over_time({filename=\"/var/log/nodenamer.log\"} |= `LND` [24h])) + sum(count_over_time({filename=\"/var/log/nodenamer.log\"} |= `CLN` [24h])) + sum(count_over_time({filename=\"/var/log/nodenamer.log\"} |= `ECLR` [24h])) + sum(count_over_time({filename=\"/var/log/nodenamer.log\"} |= `LDK` [24h])) + sum(count_over_time({filename=\"/var/log/nodenamer.log\"} |= `IMPLEMENTATION=UNKNOWN` [24h])))",
           "hide": false,
-          "legendFormat": "ECLR%",
+          "legendFormat": "ECLR %",
           "queryType": "range",
           "refId": "ECLR%"
         },
@@ -243,7 +259,7 @@
           "editorMode": "code",
           "expr": "sum(count_over_time({filename=\"/var/log/nodenamer.log\"} |= `CLN` [24h])) * 100 / ( sum(count_over_time({filename=\"/var/log/nodenamer.log\"} |= `LND` [24h])) + sum(count_over_time({filename=\"/var/log/nodenamer.log\"} |= `CLN` [24h])) + sum(count_over_time({filename=\"/var/log/nodenamer.log\"} |= `ECLR` [24h])) + sum(count_over_time({filename=\"/var/log/nodenamer.log\"} |= `LDK` [24h])) + sum(count_over_time({filename=\"/var/log/nodenamer.log\"} |= `IMPLEMENTATION=UNKNOWN` [24h])))",
           "hide": false,
-          "legendFormat": "CLN%",
+          "legendFormat": "CLN %",
           "queryType": "range",
           "refId": "CLN%"
         },
@@ -255,7 +271,7 @@
           "editorMode": "code",
           "expr": "sum(count_over_time({filename=\"/var/log/nodenamer.log\"} |= `LDK` [24h])) * 100 / ( sum(count_over_time({filename=\"/var/log/nodenamer.log\"} |= `LND` [24h])) + sum(count_over_time({filename=\"/var/log/nodenamer.log\"} |= `CLN` [24h])) + sum(count_over_time({filename=\"/var/log/nodenamer.log\"} |= `ECLR` [24h])) + sum(count_over_time({filename=\"/var/log/nodenamer.log\"} |= `LDK` [24h])) + sum(count_over_time({filename=\"/var/log/nodenamer.log\"} |= `IMPLEMENTATION=UNKNOWN` [24h])))",
           "hide": false,
-          "legendFormat": "LDK%",
+          "legendFormat": "LDK %",
           "queryType": "range",
           "refId": "LDK%"
         },
@@ -265,9 +281,9 @@
             "uid": "grafanacloud-logs"
           },
           "editorMode": "code",
-          "expr": "sum(count_over_time({filename=\"/var/log/nodenamer.log\"} |= `LDK` [24h])) * 100 / ( sum(count_over_time({filename=\"/var/log/nodenamer.log\"} |= `LND` [24h])) + sum(count_over_time({filename=\"/var/log/nodenamer.log\"} |= `CLN` [24h])) + sum(count_over_time({filename=\"/var/log/nodenamer.log\"} |= `ECLR` [24h])) + sum(count_over_time({filename=\"/var/log/nodenamer.log\"} |= `LDK` [24h])) + sum(count_over_time({filename=\"/var/log/nodenamer.log\"} |= `IMPLEMENTATION=UNKNOWN` [24h])))",
+          "expr": "sum(count_over_time({filename=\"/var/log/nodenamer.log\"} |= `IMPLEMENTATION=UNKNOWN` [24h])) * 100 / ( sum(count_over_time({filename=\"/var/log/nodenamer.log\"} |= `LND` [24h])) + sum(count_over_time({filename=\"/var/log/nodenamer.log\"} |= `CLN` [24h])) + sum(count_over_time({filename=\"/var/log/nodenamer.log\"} |= `ECLR` [24h])) + sum(count_over_time({filename=\"/var/log/nodenamer.log\"} |= `LDK` [24h])) + sum(count_over_time({filename=\"/var/log/nodenamer.log\"} |= `IMPLEMENTATION=UNKNOWN` [24h])))",
           "hide": false,
-          "legendFormat": "UNKNOWN%",
+          "legendFormat": "UNKNOWN %",
           "queryType": "range",
           "refId": "UNKNOWN%"
         }
@@ -329,7 +345,7 @@
         "textMode": "value_and_name",
         "wideLayout": true
       },
-      "pluginVersion": "11.2.0-74515",
+      "pluginVersion": "11.3.0-76761",
       "targets": [
         {
           "datasource": {
@@ -540,11 +556,23 @@
             "uid": "grafanacloud-logs"
           },
           "editorMode": "builder",
+          "expr": "last_over_time({filename=\"/var/log/nodenamer-features-total.log\"} | logfmt | feature_bit = `257` | unwrap qty [24h])",
+          "hide": false,
+          "legendFormat": "Bit: {{feature_bit}} {{feature_name}}, Required: {{is_required}}",
+          "queryType": "range",
+          "refId": "257"
+        },
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "grafanacloud-logs"
+          },
+          "editorMode": "builder",
           "expr": "last_over_time({filename=\"/var/log/nodenamer-features-total.log\"} | logfmt | feature_bit = `259` | unwrap qty [24h])",
           "hide": false,
           "legendFormat": "Bit: {{feature_bit}} {{feature_name}}, Required: {{is_required}}",
           "queryType": "range",
-          "refId": "729"
+          "refId": "259"
         },
         {
           "datasource": {
@@ -556,7 +584,7 @@
           "hide": false,
           "legendFormat": "Bit: {{feature_bit}} {{feature_name}}, Required: {{is_required}}",
           "queryType": "range",
-          "refId": "32973"
+          "refId": "2023"
         },
         {
           "datasource": {
@@ -568,7 +596,7 @@
           "hide": false,
           "legendFormat": "Bit: {{feature_bit}} {{feature_name}}, Required: {{is_required}}",
           "queryType": "range",
-          "refId": "A"
+          "refId": "32973"
         }
       ],
       "title": "Feature bits",
@@ -628,7 +656,7 @@
         "textMode": "value_and_name",
         "wideLayout": true
       },
-      "pluginVersion": "11.2.0-74515",
+      "pluginVersion": "11.3.0-76761",
       "targets": [
         {
           "datasource": {
@@ -852,6 +880,18 @@
             "uid": "grafanacloud-logs"
           },
           "editorMode": "builder",
+          "expr": "last_over_time({filename=\"/var/log/nodenamer-features-total.log\"} | logfmt | feature_bit = `2021` | unwrap qty [24h])",
+          "hide": false,
+          "legendFormat": "Bit: {{feature_bit}} {{feature_name}}, Required: {{is_required}}",
+          "queryType": "range",
+          "refId": "2021"
+        },
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "grafanacloud-logs"
+          },
+          "editorMode": "builder",
           "expr": "last_over_time({filename=\"/var/log/nodenamer-features-total.log\"} | logfmt | feature_bit = `2025` | unwrap qty [24h])",
           "hide": false,
           "legendFormat": "Bit: {{feature_bit}} {{feature_name}}, Required: {{is_required}}",
@@ -876,7 +916,7 @@
     }
   ],
   "preload": false,
-  "schemaVersion": 39,
+  "schemaVersion": 40,
   "tags": [],
   "templating": {
     "list": []
@@ -889,6 +929,6 @@
   "timezone": "browser",
   "title": "Lightning Nodenamer",
   "uid": "bdj1qfbsea3uoe",
-  "version": 61,
+  "version": 73,
   "weekStart": ""
 }

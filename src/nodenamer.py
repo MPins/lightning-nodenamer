@@ -260,7 +260,7 @@ def main(json_file, log_dir):
                                     template_found = True
                                     # Extract implementation and version from the template index
                                     templates_index[i]['Qty'] += 1
-                                    new_output = {"id": pubkey, "implementation": templates_index[i]['implementation'], "version": templates_index[i]['version']}
+                                    new_output = {"id": pubkey, "implementation": templates_index[i]['implementation'], "version": templates_index[i]['version'], "capacity": 0}
                                     output.append(new_output)
                                     counter_feature_bits += 1
                             
@@ -269,24 +269,32 @@ def main(json_file, log_dir):
                             # And the default color captured above
                             if template_found == False and last_update > (current_unix_time - SECONDS_IN_A_YEAR) and len(sm.data) > 0:
                                 templates_index[len(templates_index)-3]['Qty'] += 1
-                                new_output = {"id": pubkey, "color": node_color, "implementation": "UNKNOWN", "version": "UNKNOWN", 'LND': 0, 'LDK': 0, 'CLN': 0, 'ECLR': 0}
+                                new_output = {"id": pubkey, "color": node_color, "implementation": "UNKNOWN", "version": "UNKNOWN", "capacity": 0,'LND': 0, 'LDK': 0, 'CLN': 0, 'ECLR': 0}
                                 output_temp.append(new_output)
                                 list_of_unknown_fingerprint.append(sm.data)
                             if template_found == False and last_update > (current_unix_time - SECONDS_IN_A_YEAR) and len(sm.data) == 0:
                                 templates_index[len(templates_index)-2]['Qty'] += 1
-                                new_output = {"id": pubkey, "color": node_color, "implementation": "NOFEATURES", "version": "NOFEATURES", 'LND': 0, 'LDK': 0, 'CLN': 0, 'ECLR': 0}
+                                new_output = {"id": pubkey, "color": node_color, "implementation": "NOFEATURES", "version": "NOFEATURES", "capacity": 0, 'LND': 0, 'LDK': 0, 'CLN': 0, 'ECLR': 0}
                                 output_no_features_temp.append(new_output)                    
                             if template_found == False and last_update < (current_unix_time - SECONDS_IN_A_YEAR):
                                 templates_index[len(templates_index)-1]['Qty'] += 1
-                                new_output = {"id": pubkey, "color": node_color, "implementation": "NOUPDATE", "version": "NOUPDATE", 'LND': 0, 'LDK': 0, 'CLN': 0, 'ECLR': 0}
+                                new_output = {"id": pubkey, "color": node_color, "implementation": "NOUPDATE", "version": "NOUPDATE", "capacity": 0, 'LND': 0, 'LDK': 0, 'CLN': 0, 'ECLR': 0}
                                 output_no_updates_temp.append(new_output)
                                 
                         # ***** SECOND LAYER ***** trying to identify the node using the defaul channel policies (continue)         
                         elif sm.data['data_type'] == "edges":
                             channels_counter += 1
+                            # Update capacity for a specific node in each output list
+                            output_lists = [output, output_temp, output_no_features_temp, output_no_updates_temp]
+                            for output_list in output_lists:
+                                for node in output_list:
+                                    if node.get('id') in (sm.data['edges.item.node1_pub'], sm.data['edges.item.node2_pub']):
+                                        node['capacity'] += int(sm.data['edges.item.capacity'])
+                                                        
                             if sm.data['edges.item.last_update'] == 0: continue
-                            # I'm counting the each distribution time_lock_delta default of each channel of the nodes
-                            # that based on feature bits are unkown
+
+                            # I'm counting the distribution time_lock_delta default of each channel of the nodes
+                            # that based on feature bits are unkown.
                             for node in output_temp:
                                 if node.get('id') == sm.data['edges.item.node1_pub'] and node.get('implementation') == 'UNKNOWN':
                                     if sm.data.get('edges.item.node1_policy.time_lock_delta') == 144:
@@ -337,7 +345,7 @@ def main(json_file, log_dir):
                 if node[key] > max_value:
                     max_key = key
             if node[max_key] > 0:
-                new_output = {"id": node['id'], "implementation": max_key, "version": 'UNKNOWN'}
+                new_output = {"id": node['id'], "implementation": max_key, "version": 'UNKNOWN', "capacity": node['capacity']}
                 output.append(new_output)
                 counter_channel_policy += 1
             else:
@@ -345,16 +353,16 @@ def main(json_file, log_dir):
                 imp_by_color = implementation_by_color(node['color'])
                 if imp_by_color == "UNKNOWN":
                     if node['implementation'] == "UNKNOWN": 
-                        new_output = {"id": node['id'], "implementation": "UNKNOWN", "version": 'UNKNOWN'}
+                        new_output = {"id": node['id'], "implementation": "UNKNOWN", "version": 'UNKNOWN', "capacity": node['capacity']}
                         output_unknown.append(new_output)   
                     elif node['implementation'] == "NOFEATURES":
-                        new_output = {"id": node['id'], "implementation": "NOFEATURES", "version": 'UNKNOWN'}
+                        new_output = {"id": node['id'], "implementation": "NOFEATURES", "version": 'UNKNOWN', "capacity": node['capacity']}
                         output_no_features.append(new_output)
                     elif node['implementation'] == "NOUPDATE":
-                        new_output = {"id": node['id'], "implementation": "NOUPDATE", "version": 'UNKNOWN'}
+                        new_output = {"id": node['id'], "implementation": "NOUPDATE", "version": 'UNKNOWN', "capacity": node['capacity']}
                         output_no_updates.append(new_output)
                 else:
-                        new_output = {"id": node['id'], "implementation": imp_by_color, "version": 'UNKNOWN'}
+                        new_output = {"id": node['id'], "implementation": imp_by_color, "version": 'UNKNOWN', "capacity": node['capacity']}
                         output.append(new_output)
                         counter_color += 1
 
@@ -366,7 +374,7 @@ def main(json_file, log_dir):
                     datetime_string = current_datetime.strftime("%Y-%m-%d %H:%M:%S.%f")
                     key = node.get('implementation')
                     counters[key] += 1            
-                    line = datetime_string + " " + "IMPLEMENTATION=" + node.get('implementation') + " " + "VERSION=" + node.get('version') + " " + "ID=" + node.get('id') + "\n"
+                    line = datetime_string + " " + "IMPLEMENTATION=" + node.get('implementation') + " " + "VERSION=" + node.get('version') + " " + "CAPACITY=" + str(node.get('capacity')) + " " + "ID=" + node.get('id') + "\n"
                     f_out.write(line)
                  
         for label, qty in counters.items():

@@ -211,6 +211,7 @@ def main(json_file, log_dir):
         
         #Initialize counters
         counters = {'LND': 0, 'CLN': 0, 'ECLR': 0,'LDK': 0,'UNKNOWN': 0,'NOFEATURES': 0,'NOUPDATE': 0}
+        capacity = {'LND': 0, 'CLN': 0, 'ECLR': 0,'LDK': 0,'UNKNOWN': 0,'NOFEATURES': 0,'NOUPDATE': 0}
         nodes_counter = 0
         channels_counter = 0
 
@@ -373,12 +374,16 @@ def main(json_file, log_dir):
                     current_datetime = datetime.datetime.now()
                     datetime_string = current_datetime.strftime("%Y-%m-%d %H:%M:%S.%f")
                     key = node.get('implementation')
-                    counters[key] += 1            
+                    counters[key] += 1
+                    capacity[key] += node.get('capacity')            
                     line = datetime_string + " " + "IMPLEMENTATION=" + node.get('implementation') + " " + "VERSION=" + node.get('version') + " " + "CAPACITY=" + str(node.get('capacity')) + " " + "ID=" + node.get('id') + "\n"
                     f_out.write(line)
                  
         for label, qty in counters.items():
             print(f"{label}: {qty}")
+
+        for label, cap in capacity.items():
+            print(f"{label}: {cap/100000000}")
 
         # Order features_list by feature_bit
         ordered_features = sorted(fb.count, key=lambda x: int(x['feature_bit']))

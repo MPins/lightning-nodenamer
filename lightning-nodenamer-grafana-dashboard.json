@@ -84,7 +84,7 @@
         "textMode": "value_and_name",
         "wideLayout": true
       },
-      "pluginVersion": "11.3.0-76761",
+      "pluginVersion": "11.4.0-78678",
       "targets": [
         {
           "datasource": {
@@ -226,7 +226,7 @@
         "showThresholdMarkers": false,
         "sizing": "auto"
       },
-      "pluginVersion": "11.3.0-76761",
+      "pluginVersion": "11.4.0-78678",
       "targets": [
         {
           "datasource": {
@@ -293,6 +293,181 @@
     },
     {
       "datasource": {
+        "uid": "grafanacloud-logs"
+      },
+      "description": "This calculation disregard the nodes that send no features bit updates during the last 12 months.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "text",
+            "mode": "fixed"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "currencyBTC"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Value #LND"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "LND"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Value #ECLR"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "ECLR"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Value #CLN"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "CLN"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Value #LDK"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "LDK"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Value #UNKNOWN"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "UNKNOWN"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 24,
+        "x": 0,
+        "y": 12
+      },
+      "id": 7,
+      "options": {
+        "minVizHeight": 75,
+        "minVizWidth": 75,
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": false,
+        "sizing": "auto",
+        "text": {}
+      },
+      "pluginVersion": "11.4.0-78678",
+      "targets": [
+        {
+          "editorMode": "code",
+          "expr": "sum_over_time(({filename=\"/var/log/nodenamer.log\"} |= \"IMPLEMENTATION=LND\" | regexp \"CAPACITY=(?P<capacity>\\\\d+)\" | unwrap capacity [24h]))/100000000/2\n",
+          "legendFormat": "",
+          "queryType": "instant",
+          "refId": "LND",
+          "step": "24h"
+        },
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "grafanacloud-logs"
+          },
+          "editorMode": "code",
+          "expr": "sum_over_time({filename=\"/var/log/nodenamer.log\"} |= `IMPLEMENTATION=ECLR` | regexp `CAPACITY=(?P<capacity>\\d+)` | unwrap capacity [24h])/100000000/2",
+          "hide": false,
+          "legendFormat": "",
+          "queryType": "instant",
+          "refId": "ECLR",
+          "step": "24h"
+        },
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "grafanacloud-logs"
+          },
+          "editorMode": "code",
+          "expr": "sum_over_time({filename=\"/var/log/nodenamer.log\"} |= `IMPLEMENTATION=CLN` | regexp `CAPACITY=(?P<capacity>\\d+)` | unwrap capacity [24h])/100000000/2",
+          "hide": false,
+          "legendFormat": "",
+          "queryType": "instant",
+          "refId": "CLN",
+          "step": "24h"
+        },
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "grafanacloud-logs"
+          },
+          "editorMode": "code",
+          "expr": "sum_over_time({filename=\"/var/log/nodenamer.log\"} |= `IMPLEMENTATION=LDK` | regexp `CAPACITY=(?P<capacity>\\d+)` | unwrap capacity [24h])/100000000/2",
+          "hide": false,
+          "legendFormat": "",
+          "queryType": "instant",
+          "refId": "LDK",
+          "step": "24h"
+        },
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "grafanacloud-logs"
+          },
+          "editorMode": "code",
+          "expr": "sum_over_time({filename=\"/var/log/nodenamer.log\"} |= `IMPLEMENTATION=UNKNOWN` | regexp `CAPACITY=(?P<capacity>\\d+)` | unwrap capacity [24h])/100000000/2",
+          "hide": false,
+          "legendFormat": "",
+          "queryType": "instant",
+          "refId": "UNKNOWN",
+          "step": "24h"
+        }
+      ],
+      "title": "Capacity in BTCs",
+      "type": "gauge"
+    },
+    {
+      "datasource": {
         "type": "loki",
         "uid": "grafanacloud-logs"
       },
@@ -321,7 +496,7 @@
         "h": 12,
         "w": 12,
         "x": 0,
-        "y": 12
+        "y": 18
       },
       "id": 3,
       "options": {
@@ -345,7 +520,7 @@
         "textMode": "value_and_name",
         "wideLayout": true
       },
-      "pluginVersion": "11.3.0-76761",
+      "pluginVersion": "11.4.0-78678",
       "targets": [
         {
           "datasource": {
@@ -632,7 +807,7 @@
         "h": 12,
         "w": 12,
         "x": 12,
-        "y": 12
+        "y": 18
       },
       "id": 4,
       "options": {
@@ -656,7 +831,7 @@
         "textMode": "value_and_name",
         "wideLayout": true
       },
-      "pluginVersion": "11.3.0-76761",
+      "pluginVersion": "11.4.0-78678",
       "targets": [
         {
           "datasource": {
@@ -922,13 +1097,13 @@
     "list": []
   },
   "time": {
-    "from": "now-15m",
-    "to": "now"
+    "from": "2024-11-14T19:49:48.956Z",
+    "to": "2024-11-14T20:19:48.956Z"
   },
   "timepicker": {},
   "timezone": "browser",
   "title": "Lightning Nodenamer",
   "uid": "bdj1qfbsea3uoe",
-  "version": 73,
+  "version": 78,
   "weekStart": ""
 }

@@ -382,8 +382,9 @@ def main(json_file, log_dir):
         for label, qty in counters.items():
             print(f"{label}: {qty}")
 
+        # The Capacity of set of nodes is the sum ofthe nodes capacity divided by 2. (considering that each edge of the channel has 50% of the capacity)
         for label, cap in capacity.items():
-            print(f"{label}: {cap/100000000}")
+            print(f"{label}: {cap/100000000/2}")
 
         # Order features_list by feature_bit
         ordered_features = sorted(fb.count, key=lambda x: int(x['feature_bit']))

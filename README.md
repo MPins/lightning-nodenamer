@@ -69,6 +69,13 @@ Besides the files created the program will show the following information on the
 - UNKNOWN NODES: #total of unknown nodes
 - NO UPDATES NODES: #total of nodes which there is no updates on this json graph file
 - NO FEATURE BIT NODES: #total of nodes which there is no feature bits on this json graph file
+- LND: #total capacity of LND nodes
+- CLN: #total capacity of CLN nodes
+- ECLR: #total capacity of ECLR nodes
+- LDK: #total capacity of LDK nodes
+- UNKNOWN NODES: #total capacity of unknown nodes
+- NO UPDATES NODES: #total capacity of nodes which there is no updates on this json graph file
+- NO FEATURE BIT NODES: #total capacity of nodes which there is no feature bits on this json graph file
 
 - Additionaly it will output the counting of each feature bits encountered on each node
 
